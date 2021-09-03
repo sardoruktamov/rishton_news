@@ -6,10 +6,10 @@ def subject_renderer(request):
     }
     return data
 
-#
+
 def blog_processor(request):
     data = {
-        'all_blog':  Blog.objects.all()
+        'all_blog':  Blog.objects.all()[1:5]
     }
     return data
 

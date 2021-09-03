@@ -15,52 +15,24 @@
                 <div class="fh5co_suceefh5co_height_position_absolute_font">
                     <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ i.created_at }}
                     </a></div>
-                    <div class=""><a href="single.html" class="fh5co_good_font"> {{ i.title }} </a></div>
+                    <div class=""><a href="{{ i.get_absolute_url }}" class="fh5co_good_font"> {{ i.title }} </a></div>
                 </div>
             </div>
         </div>
         {% endfor %}
         <div class="col-md-6">
             <div class="row">
+                {% for obj in all_blog %}
                 <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height_2"><img src="images/science-578x362.jpg" alt="img"/>
+                    <div class="fh5co_suceefh5co_height_2"><img src="{{ obj.image.url }}" alt="img"/>
                         <div class="fh5co_suceefh5co_height_position_absolute"></div>
                         <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct
-                                28,2017 </a></div>
-                            <div class=""><a href="single.html" class="fh5co_good_font_2"> After all is said and done, <br>more is said than done </a></div>
+                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ obj.created_at }} </a></div>
+                            <div class=""><a href="{{ obj.get_absolute_url }}" class="fh5co_good_font_2"> {{ obj.title }} </a></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height_2"><img src="images/joe-gardner-75333.jpg" alt="img"/>
-                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28,2017 </a></div>
-                            <div class=""><a href="single.html" class="fh5co_good_font_2"> After all is said and done... </a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height_2"><img src="images/ryan-moreno-98837.jpg" alt="img"/>
-                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct
-                                28,2017 </a></div>
-                            <div class=""><a href="single.html" class="fh5co_good_font_2"> After all is said and done, more is said than done </a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height_2"><img src="images/10-1-1-875x500.jpg" alt="img"/>
-                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct
-                                28,2017 </a></div>
-                            <div class=""><a href="single.html" class="fh5co_good_font_2"> After all is said and done, more is said... </a></div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -370,18 +342,25 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="fh5co_tags_all">
-                    <a href="#" class="fh5co_tagg">Business</a>
-                    <a href="#" class="fh5co_tagg">Technology</a>
-                    <a href="#" class="fh5co_tagg">Sport</a>
-                    <a href="#" class="fh5co_tagg">Art</a>
-                    <a href="#" class="fh5co_tagg">Lifestyle</a>
-                    <a href="#" class="fh5co_tagg">Three</a>
-                    <a href="#" class="fh5co_tagg">Photography</a>
-                    <a href="#" class="fh5co_tagg">Lifestyle</a>
-                    <a href="#" class="fh5co_tagg">Art</a>
-                    <a href="#" class="fh5co_tagg">Education</a>
-                    <a href="#" class="fh5co_tagg">Social</a>
-                    <a href="#" class="fh5co_tagg">Three</a>
+                    {% for tag in object_list %}
+                    <a href="#" class="fh5co_tagg">{{ tag.hashtag }}</a>
+                    {% endfor %}
+                    {% if tag %}
+                        <h2>Books Tagged As {{ tag }}</h2>
+                        {% else %}
+                        <p>tags mavjud emas</p>
+                    {% endif %}
+{#                    <a href="#" class="fh5co_tagg">Technology</a>#}
+{#                    <a href="#" class="fh5co_tagg">Sport</a>#}
+{#                    <a href="#" class="fh5co_tagg">Art</a>#}
+{#                    <a href="#" class="fh5co_tagg">Lifestyle</a>#}
+{#                    <a href="#" class="fh5co_tagg">Three</a>#}
+{#                    <a href="#" class="fh5co_tagg">Photography</a>#}
+{#                    <a href="#" class="fh5co_tagg">Lifestyle</a>#}
+{#                    <a href="#" class="fh5co_tagg">Art</a>#}
+{#                    <a href="#" class="fh5co_tagg">Education</a>#}
+{#                    <a href="#" class="fh5co_tagg">Social</a>#}
+{#                    <a href="#" class="fh5co_tagg">Three</a>#}
                 </div>
                 <div>
                     <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Most Popular</div>
