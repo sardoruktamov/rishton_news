@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Category, Blog, PicturesFromTheBlog
 from parler.admin import TranslatableAdmin
+
+
 # Register your models here.
 
 @admin.register(Category)
@@ -10,14 +12,16 @@ class RegiosnsAdmin(TranslatableAdmin):
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('name',)}
 
+
 @admin.register(Blog)
 class BlogAdmin(TranslatableAdmin):
     list_display = ('title', 'category',)
     list_display_links = ('title',)
-    search_fields = ['title', 'description','category']
+    search_fields = ['title', 'description', 'category']
 
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('title',)}
+
 
 @admin.register(PicturesFromTheBlog)
 class PicturesAdmin(admin.ModelAdmin):  # PicturesAdmin(TranslatableAdmin) bunday qilib yozib bo`lmaydi xatolik beradi

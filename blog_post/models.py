@@ -15,7 +15,7 @@ class Category(TranslatableModel):
         verbose_name_plural = "Kategoriyalar"
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def get_absolute_url(self):
         return f'categories/{self.slug}'
@@ -32,6 +32,7 @@ class Blog(TranslatableModel):
     hashtag = TaggableManager()
 
     class Meta:
+        ordering = ['-created_at']
         verbose_name_plural = 'Blog'
 
     def __str__(self):
