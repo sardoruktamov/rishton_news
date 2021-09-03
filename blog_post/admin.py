@@ -7,11 +7,18 @@ from parler.admin import TranslatableAdmin
 class RegiosnsAdmin(TranslatableAdmin):
     list_display = ('name',)
 
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('name',)}
+
 @admin.register(Blog)
-class RegiosnsAdmin(TranslatableAdmin):
+class BlogAdmin(TranslatableAdmin):
     list_display = ('title', 'category',)
     list_display_links = ('title',)
+    search_fields = ['title', 'description','category']
+
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('title',)}
 
 @admin.register(PicturesFromTheBlog)
-class RegiosnsAdmin(TranslatableAdmin):
+class PicturesAdmin(admin.ModelAdmin):  # PicturesAdmin(TranslatableAdmin) bunday qilib yozib bo`lmaydi xatolik beradi
     list_display = ('owner',)
