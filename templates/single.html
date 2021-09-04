@@ -140,10 +140,9 @@
                     accumsan purus, at
                     mattis nisi nibh in lorem. Sed laoreet, ante vitae tincidunt auctor, sapien metus tincidunt ante,
                     quis aliquam lacus risus id quam.
-                </p><h1>DDDDDDDDDDDDDDD</h1>
-                {% for imag in object.PicturesFromTheBlog.all %}
-                    <h1>SSSSSSSSSSSSSSS</h1>
-                    <img src="{{ imag.image.url }}" class="img-movie-shots ">
+                </p>
+                {% for img in object.picturefromblog.all %}
+                    <img src="{{ img.image.url }}" class="img-movie-shots ">
                 {% endfor %}
                 <h3>Free HTML5 Templates</h3>
                 <p>

@@ -42,7 +42,7 @@ class Blog(TranslatableModel):
         return f'blog/{self.slug}'
 
 class PicturesFromTheBlog(models.Model):
-    owner = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='picturefromblog')
     image = models.ImageField(upload_to='shotsinblogs')
 
     class Meta:
