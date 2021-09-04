@@ -29,6 +29,8 @@ class TagListView(ListView):
 class DetailViews(DetailView):
     model = Blog
     template_name = 'single.html'
+    # for i in Blog.objects.all():
+    #     print(i.PicturesFromTheBlog.all,'+++++++++++++++++++++++++')
 
     def get_context_data(self, **kwargs):
         context = super(DetailViews, self).get_context_data(**kwargs)
