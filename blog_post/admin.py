@@ -6,7 +6,7 @@ from parler.admin import TranslatableAdmin
 # Register your models here.
 
 @admin.register(Category)
-class RegiosnsAdmin(TranslatableAdmin):
+class CategoryAdmin(TranslatableAdmin):
     list_display = ('name',)
 
     def get_prepopulated_fields(self, request, obj=None):

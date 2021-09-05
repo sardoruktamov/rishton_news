@@ -6,7 +6,6 @@ from .models import Category, Blog, PicturesFromTheBlog
 class HomePageView(ListView):
     template_name = 'index.html'
     queryset = Blog.objects.all()[:1]
-    # print(queryset.hashtag.all,'999999999999999999999999')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
@@ -15,7 +14,7 @@ class HomePageView(ListView):
 
 class TagListView(ListView):
     """bloglarni taglar yordamida filterlash"""
-    template_name = "index.html"
+    template_name = "blog.html"
 
     def get_queryset(self):
         return Blog.objects.filter(hashtag__slug=self.kwargs.get("slug")).all()
@@ -23,7 +22,6 @@ class TagListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(TagListView, self).get_context_data(**kwargs)
         context["tag"] = self.kwargs.get("slug")
-        print(context["tag"],'+++++++++++++++++++++++')
         return context
 
 class DetailViews(DetailView):
@@ -34,7 +32,15 @@ class DetailViews(DetailView):
     #     photos = Blog.objects.get(self.kwargs.get("slug"))
     #     return photos
 
-
     def get_context_data(self, **kwargs):
         context = super(DetailViews, self).get_context_data(**kwargs)
+        return context
+
+class BlogPageView(ListView):
+    template_name = 'blog.html'
+    queryset = Blog.objects.all()[:5]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['blog'] = Blog.objects.all()
         return context
