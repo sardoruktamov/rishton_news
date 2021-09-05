@@ -1,9 +1,13 @@
 from django.contrib import admin
-from .models import Category, Blog, PicturesFromTheBlog
+from .models import Category, Blog, PicturesFromTheBlog, Tags
 from parler.admin import TranslatableAdmin
 
 
 # Register your models here.
+
+@admin.register(Tags)
+class TagsAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 @admin.register(Category)
 class CategoryAdmin(TranslatableAdmin):
@@ -21,6 +25,7 @@ class BlogAdmin(TranslatableAdmin):
     list_display_links = ('title',)
     search_fields = ['title', 'description', 'category']
     inlines = [BlogImageAdmin]
+    # list_filter =
 
     class Meta:
         model = Blog

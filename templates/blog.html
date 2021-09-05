@@ -52,8 +52,8 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="fh5co_tags_all">
-                    {% for tag in blogs.hashtag.all %}
-                    <a href="#" class="fh5co_tagg">#{{ tag.name }}</a>
+                    {% for tag in object_list.hashtag.all %}
+                    <a href="#" class="fh5co_tagg">#{{ tag.hashtag }}</a>
                     {% endfor %}
                     <a href="#" class="fh5co_tagg">Business</a>
                     <a href="#" class="fh5co_tagg">Technology</a>

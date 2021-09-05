@@ -12,17 +12,6 @@ class HomePageView(ListView):
         context['blog'] = Blog.objects.all()
         return context
 
-class TagListView(ListView):
-    """bloglarni taglar yordamida filterlash"""
-    template_name = "blog.html"
-
-    def get_queryset(self):
-        return Blog.objects.filter(hashtag__slug=self.kwargs.get("slug")).all()
-
-    def get_context_data(self, **kwargs):
-        context = super(TagListView, self).get_context_data(**kwargs)
-        context["tag"] = self.kwargs.get("slug")
-        return context
 
 class DetailViews(DetailView):
     model = Blog

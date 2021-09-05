@@ -1,8 +1,15 @@
-
 from django.db import models
-from taggit.managers import TaggableManager
 from parler.models import TranslatableModel, TranslatedFields
 from django.utils.translation import gettext_lazy as _
+
+
+class Tags(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.name)
+
+
 
 class Category(TranslatableModel):
     translation = TranslatedFields(
@@ -26,10 +33,10 @@ class Blog(TranslatableModel):
         title=models.CharField(max_length=255, verbose_name=_('Title')),
         description=models.TextField(verbose_name=_('Description')))
     slug = models.SlugField(max_length=255, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True,)
+    created_at = models.DateTimeField(auto_now_add=True, )
     image = models.ImageField(upload_to='blogimages')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,)
-    hashtag = TaggableManager()
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -40,6 +47,7 @@ class Blog(TranslatableModel):
 
     def get_absolute_url(self):
         return f'blog/{self.slug}'
+
 
 class PicturesFromTheBlog(models.Model):
     owner = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='picturefromblog')
