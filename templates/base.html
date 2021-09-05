@@ -80,26 +80,20 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'blogpage' %}">Blogs <span class="sr-only">(current)</span></a>
-                    </li>
-                    {% for cat in all_category %}
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'categories' cat.slug %}">{{ cat.name }} <span class="sr-only">(current)</span></a>
-                    </li>
-                    {% endfor %}
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">World <span class="sr-only">(current)</span></a>
+                           aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                            <a class="dropdown-item" href="#">Action in</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                    {% for cat in all_category %}
+                            <a class="dropdown-item" href="{% url 'categories' cat.slug %}">{{ cat.name }} </a>
+                        {% endfor %}
                         </div>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Community<span class="sr-only">(current)</span></a>
+                           aria-haspopup="true" aria-expanded="false">E'lonlar<span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
                             <a class="dropdown-item" href="#">Action in</a>
                             <a class="dropdown-item" href="#">Another action</a>
