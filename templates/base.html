@@ -85,7 +85,7 @@
                     </li>
                     {% for cat in all_category %}
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{ cat.get_absolute_url }}">{{ cat.name }} <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'categories' cat.slug %}">{{ cat.name }} <span class="sr-only">(current)</span></a>
                     </li>
                     {% endfor %}
                     <li class="nav-item dropdown">

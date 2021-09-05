@@ -38,9 +38,19 @@ class DetailViews(DetailView):
 
 class BlogPageView(ListView):
     template_name = 'blog.html'
-    queryset = Blog.objects.all()[:5]
+    queryset = Blog.objects.all()
+    context_object_name = 'blogs'
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['blog'] = Blog.objects.all()
+        # context['blogs'] = Blog.objects.all()
         return context
+
+class CategoriesView(ListView):
+    template_name = 'blog.html'
+    model = Blog
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(category__slug=self.kwargs.get('slug'))
+        return queryset

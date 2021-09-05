@@ -180,7 +180,8 @@
                 <div class="clearfix"></div>
                 <div class="fh5co_tags_all">
                      {% for tag in object.hashtag.all %}
-                    <a href="{% url "tagged_blogs" tag.slug %}" class="fh5co_tagg">#{{ tag }}</a>
+                    <a href="{% url "tagged_blogs" tag.slug %}" class="fh5co_tagg">
+                        #{{ tag }}</a>
                     {% endfor %}
 {#                    <a href="#" class="fh5co_tagg">Technology</a>#}
 {#                    <a href="#" class="fh5co_tagg">Sport</a>#}
