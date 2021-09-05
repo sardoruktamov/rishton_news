@@ -85,7 +85,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                    {% for cat in all_category %}
+                        <a class="dropdown-item" href="{% url 'blogpage' %}">Barchasi </a>
+                        {% for cat in all_category %}
                             <a class="dropdown-item" href="{% url 'categories' cat.slug %}">{{ cat.name }} </a>
                         {% endfor %}
                         </div>

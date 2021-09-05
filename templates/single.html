@@ -1,11 +1,5 @@
 {% load static %}
 <!DOCTYPE html>
-<!--
-	24 News by FreeHTML5.co
-	Twitter: https://twitter.com/fh5co
-	Facebook: https://fb.com/fh5co
-	URL: https://freehtml5.co
--->
 <html lang="en" class="no-js">
 <head>
     <!-- Required meta tags -->
@@ -87,24 +81,21 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'blogpage' %}">Blog <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="single.html">Single <span class="sr-only">(current)</span></a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">World <span class="sr-only">(current)</span></a>
+                           aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                            <a class="dropdown-item" href="#">Action in</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="{% url 'blogpage' %}">Barchasi </a>
+                        {% for cat in all_category %}
+                            <a class="dropdown-item" href="{% url 'categories' cat.slug %}">{{ cat.name }} </a>
+                        {% endfor %}
                         </div>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Community<span class="sr-only">(current)</span></a>
+                           aria-haspopup="true" aria-expanded="false">E'lonlar<span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
                             <a class="dropdown-item" href="#">Action in</a>
                             <a class="dropdown-item" href="#">Another action</a>
@@ -122,7 +113,7 @@
 <div id="fh5co-title-box" style="background-image: url({{ object.image.url }}); background-position: 50% 90.5px;" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="page-title">
-{#        <img src="{{ object.image.url }}" alt="Free HTML5 by FreeHTMl5.co">#}
+        <img src="{{ object.image.url }}" alt="Free HTML5 by FreeHTMl5.co">
         <h2>{{ object.title }}</h2>
         <span ><b>{{ object.created_at }}</b></span>
 
@@ -143,7 +134,7 @@
                     quis aliquam lacus risus id quam.
                 </p>
                 {% for img in object.picturefromblog.all %}
-                    <img src="{{ img.image.url }}" class="img-movie-shots ">
+                    <img src="{{ img.image.url }}" class="img-movie-shots" width="45%">
                 {% endfor %}
                 <h3>Free HTML5 Templates</h3>
                 <p>

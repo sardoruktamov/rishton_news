@@ -29,7 +29,7 @@ class BlogPageView(ListView):
     template_name = 'blog.html'
     queryset = Blog.objects.all()
     context_object_name = 'blogs'
-    paginate_by = 1
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
