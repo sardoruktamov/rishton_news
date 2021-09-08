@@ -101,7 +101,7 @@
 <div class="container-fluid pb-4 pt-5">
     <div class="container animate-box">
         <div>
-            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">News</div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Newsqqqqqqq</div>
         </div>
         <div class="owl-carousel owl-theme" id="slider2">
             <div class="item px-2">
@@ -323,7 +323,7 @@
                 <div class="row pb-4">
                     <div class="col-md-5">
                         <div class="fh5co_hover_news_img">
-                            <div class="fh5co_news_img"><img src="images/office-768x512.jpg" alt=""/></div>
+                            <div class="fh5co_news_img"><img src="{% static 'images/office-768x512.jpg'  %}" alt=""/></div>
                             <div></div>
                         </div>
                     </div>
@@ -344,7 +344,7 @@
                 <div class="clearfix"></div>
                 <div class="fh5co_tags_all">
                     {% for tag in tags %}
-                    <a href="{% url 'tagged_blogs' tag.id %}" class="fh5co_tagg">#{{ tag.name }}</a>
+                    <a href="{% url 'tagged_blogs' tag.name %}" class="fh5co_tagg">#{{ tag.name }}</a>
                     {% endfor %}
 
 {#                    <a href="#" class="fh5co_tagg">Technology</a>#}

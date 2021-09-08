@@ -132,6 +132,19 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'ru', },
+        {'code': 'uz', },
+    ),
+    'default': {
+        'fallbacks': [LANGUAGE_CODE],  #
+        # ts to PARLER_DEFAULT_LANGUAGE_CODE
+        'hide_untranslated': False,  # the default; let .active_translations() return fallbacks too.
+    }
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -149,17 +162,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 PARLER_DEFAULT_LANGUAGE_CODE = LANGUAGE_CODE
 
-PARLER_LANGUAGES = {
-    None: (
-        {'code': 'ru', },
-        {'code': 'uz', },
-    ),
-    'default': {
-        'fallbacks': [LANGUAGE_CODE],  #
-        # ts to PARLER_DEFAULT_LANGUAGE_CODE
-        'hide_untranslated': False,  # the default; let .active_translations() return fallbacks too.
-    }
-}
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
