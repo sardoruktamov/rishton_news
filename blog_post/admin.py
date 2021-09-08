@@ -25,7 +25,7 @@ class BlogAdmin(TranslatableAdmin):
     list_display_links = ('title',)
     search_fields = ['title', 'description', 'category']
     inlines = [BlogImageAdmin]
-    # list_filter =
+    list_filter = ('category', 'created_at')
 
     class Meta:
         model = Blog
