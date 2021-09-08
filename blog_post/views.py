@@ -3,6 +3,10 @@ from django.views.generic import ListView, DetailView
 from .models import Category, Blog, PicturesFromTheBlog, Tags
 
 
+def contact(request):
+    return render(request, "Contact_us.html", {})
+
+
 # Create your views here.
 class HomePageView(ListView):
     template_name = 'index.html'
@@ -48,8 +52,8 @@ class CategoriesView(ListView):
         return queryset
 
 
-def tagsfilter(request, id):
-    tags = get_object_or_404(Tags, pk=id)
+def tagsfilter(request, name):
+    tags = get_object_or_404(Tags, name=name)
     all_tags = Tags.objects.all()
     nat = Blog.objects.filter(tags=tags)
     context = {
