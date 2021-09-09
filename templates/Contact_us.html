@@ -59,24 +59,32 @@
 <div class="container-fluid mb-4">
     <div class="container">
         <div class="col-12 text-center contact_margin_svnit ">
-            <div class="text-center fh5co_heading py-2">Contact Us</div>
+            <div class="text-center fh5co_heading py-2">Biz bilan bog'laning</div>
         </div>
+        {% for m in messages %}
+            <div class="alert alert-info" role="alert">
+                {{ m }}
+            </div>
+        {% endfor %}
         <div class="row">
             <div class="col-12 col-md-6">
-                <form class="row" id="fh5co_contact_form">
+                <form action="{% url 'sendmail' %}" method="post" class="row" id="fh5co_contact_form">
+                    {% csrf_token %}
                     <div class="col-12 py-3">
-                        <input type="text" class="form-control fh5co_contact_text_box" placeholder="Enter Your Name" />
+                        <input type="text" name="name" class="form-control fh5co_contact_text_box" placeholder="Ismingizni kiriting.." />
                     </div>
                     <div class="col-6 py-3">
-                        <input type="text" class="form-control fh5co_contact_text_box" placeholder="E-mail" />
+                        <input type="email" name="email" class="form-control fh5co_contact_text_box" placeholder="E-mail kiriting.." />
                     </div>
                     <div class="col-6 py-3">
-                        <input type="text" class="form-control fh5co_contact_text_box" placeholder="Subject" />
+                        <input type="text" name="subject" class="form-control fh5co_contact_text_box" placeholder="Xabar mazmuni.." />
                     </div>
                     <div class="col-12 py-3">
-                        <textarea class="form-control fh5co_contacts_message" placeholder="Message"></textarea>
+                        <textarea class="form-control fh5co_contacts_message" name="message" placeholder="Xabar matni.."></textarea>
                     </div>
-                    <div class="col-12 py-3 text-center"> <a href="#" class="btn contact_btn">Send Message</a> </div>
+                    <div class="col-12 py-3 text-center">
+                        <input type="submit" class="btn contact_btn" value="Xabar yuborish"/>
+                    </div>
                 </form>
             </div>
             <div class="col-12 col-md-6 align-self-center">
