@@ -58,3 +58,13 @@ class PicturesFromTheBlog(models.Model):
 
     def __str__(self):
         return str(self.owner.safe_translation_getter('title')) or ''
+
+
+class ContactMessage(models.Model):
+    full_name = models.CharField(max_length=30)
+    email = models.EmailField()
+    subject = models.CharField(max_length=50)
+    message = models.TextField(max_length=300)
+
+    def __str__(self):
+        return self.full_name
