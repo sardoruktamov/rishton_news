@@ -7,11 +7,13 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('blog_post.urls')),
     path('118n', include('django.conf.urls.i18n'))
 ]
 
 urlpatterns += i18n_patterns(
     path('', include('blog_post.urls')),
+    path('elonlar/', include('elon.urls'))
 )
 
 if settings.DEBUG:
