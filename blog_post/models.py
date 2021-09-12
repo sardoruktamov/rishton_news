@@ -37,6 +37,7 @@ class Blog(TranslatableModel):
     image = models.ImageField(upload_to='blogimages')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True, blank=True)
+    post_view = models.IntegerField(default=0, null=True)
 
     class Meta:
         ordering = ['-created_at']

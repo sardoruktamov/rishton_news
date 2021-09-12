@@ -20,7 +20,7 @@ class Category(TranslatableModel):
     def get_absolute_url(self):
         return f'categories/{self.slug}'
 
-class SubCategory(TranslatableModel):
+class Subcategory(TranslatableModel):
     translation = TranslatedFields(
         name=models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Name'))
     )
@@ -46,9 +46,12 @@ class Announcement(TranslatableModel):
     created_at = models.DateTimeField(auto_now_add=True, )
     image = models.ImageField(upload_to='elonimages')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
-    cost = models.CharField(max_length=150, blank=True, null=True)
+    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, blank=True)
     is_public = models.BooleanField(default=False)
+    full_name = models.CharField(max_length=50)
+    address = models.CharField(max_length=250)
+    phone = models.CharField(max_length=12)
+    cost = models.CharField(max_length=9, blank=True, null=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -63,7 +66,7 @@ class Announcement(TranslatableModel):
 
 class PicturesFromTheAnnouncement(models.Model):
     owner = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='picturefromannouncement')
-    image = models.ImageField(upload_to='shotsinblogs')
+    image = models.ImageField(upload_to='elonrasmlari')
 
     class Meta:
         verbose_name_plural = 'Pictures from the Announcement'
