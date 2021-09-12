@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     #other apps
     'parler',
+    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
