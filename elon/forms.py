@@ -1,11 +1,11 @@
 from django import forms
 from elon.models import Announcement, Subcategory
+from parler.forms import TranslatableModelForm
 
-
-class AnnouncementForm(forms.ModelForm):
+class AnnouncementForm(TranslatableModelForm):
     class Meta:
         model = Announcement
-        fields = "__all__"
+        fields = ('title', 'description', 'image', 'category', 'subcategory')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
