@@ -18,5 +18,4 @@ class AnnouncementCreateView(CreateView):
 def load_category(request):
     category_id = request.GET.get('category')
     subcategory = Subcategory.objects.filter(category_id=category_id).order_by('name')
-    # print(subcategory,'--------------', category_id,'8888888888888888')
     return render(request, "announcement/category_dropdown.html", {'subcategory': subcategory})
