@@ -5,7 +5,7 @@ from parler.forms import TranslatableModelForm
 class AnnouncementForm(TranslatableModelForm):
     class Meta:
         model = Announcement
-        fields = ('title', 'description', 'image', 'category', 'subcategory')
+        fields = ('title', 'description', 'image', 'category', 'subcategory', 'cost', 'full_name', 'address', 'phone',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
