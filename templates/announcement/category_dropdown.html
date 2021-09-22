@@ -1,4 +1,15 @@
 <option value="">--sub categoriya--</option>
 {% for sub in subcategory %}
-<option value="{{ sub.pk }}">{{ subcategory.name }}</option>
+<option value="{{ sub.pk }}" id="optionid">{{ subcategory.name }}</option>
+
 {% endfor %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+     <script>
+        $("#optionid").change(function () {
+            var categoryId = $(this).val();
+            console.log(categoryId)
+
+
+        });
+    </script>
