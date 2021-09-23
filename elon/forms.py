@@ -2,6 +2,7 @@ from django import forms
 from elon.models import Announcement, Subcategory
 from parler.forms import TranslatableModelForm
 
+
 class AnnouncementForm(TranslatableModelForm):
     class Meta:
         model = Announcement
@@ -18,4 +19,4 @@ class AnnouncementForm(TranslatableModelForm):
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:
-            self.fields['subcategory'].queryset = self.instance.subcategory_set.order_by('name')
+            self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('name')

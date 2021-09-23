@@ -3,7 +3,6 @@ from parler.models import TranslatableModel, TranslatedFields
 from django.utils.translation import gettext_lazy as _
 
 
-
 class Category(TranslatableModel):
     translation = TranslatedFields(
         name=models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Name'))
@@ -19,6 +18,7 @@ class Category(TranslatableModel):
 
     def get_absolute_url(self):
         return f'categories/{self.slug}'
+
 
 class Subcategory(TranslatableModel):
     translation = TranslatedFields(
