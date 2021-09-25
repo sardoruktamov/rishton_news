@@ -14,6 +14,16 @@ class AnnouncementForm(TranslatableModelForm):
                   'cost':'Mahsulot narxi',
                   'full_name':'Ism familya',
                   'address':'Manzil', 'phone':'Telefon'}
+        widgets = {
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'mahsulot haqida qisqacha ma\'lumot kiriting...(e\'tibor qiling! xaridor birinchi bo\'lib shu qismga e\'tibor qaratadi)'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows':'5', 'placeholder':'mahsulot haqida to\'liqroq ma\'lumot kiriting...'}),
+            'category': forms.Select(
+                attrs={'class': 'form-select mb-3', 'aria-label': 'Floating form-select-lg example'}),
+            'subcategory': forms.Select(
+                attrs={'class': 'form-select mb-3', 'aria-label': 'Floating form-select-lg example'})
+
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
