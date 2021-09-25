@@ -15,7 +15,7 @@ class AnnouncementForm(TranslatableModelForm):
         if 'category' in self.data:
             try:
                 category_id = int(self.data.get('category'))
-                self.fields['category'].queryset = Subcategory.objects.filter(category_id=category_id).order_by('name')
+                self.fields['subcategory'].queryset = Subcategory.objects.filter(category_id=category_id).order_by('name')
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:
