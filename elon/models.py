@@ -14,7 +14,7 @@ class Category(TranslatableModel):
         verbose_name_plural = "Kategoriyalar"
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
     def get_absolute_url(self):
         return f'categories/{self.slug}'

@@ -9,106 +9,29 @@
     <div class="container-fluid pb-4 pt-5">
         <div class="container animate-box">
             <h1>elonlar joylashtirish</h1>
-            <form action="" method="post" id="announcementsForm" data-cities-url="{% url 'ajax_load_subcategory' %}" enctype="multipart/form-data"  novalidate>
-{#                  #}
-{#                {% csrf_token %}#}
-{#                <table>#}
-{#                                {% for field in form.visible_fields %}#}
-{#                                    <div class="form-group">#}
-{#                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>#}
-{#                                        {{ field|add_class:'form-control' }}#}
-{#                                        {% for error in field.errors %}#}
-{#                                            <span class="help-block">{{ error }}</span>#}
-{#                                        {% endfor %}#}
-{#                                    </div>#}
-{#                                {% endfor %}#}
-{#                </table>#}
-                {{ form.as_p }}
+            <form  method="post" id="announcementsForm" data-cities-url="{% url 'ajax_load_subcategory' %}" enctype="multipart/form-data"  novalidate>
+                {% csrf_token %}
+
+                <table>
+                    {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field|add_class:'form-control' }}
+                            {% for error in field.errors %}
+                                <span class="help-block">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% if field.label == "Kategoriyaga oid" %}
+                        <h1>Bog'lanish uchun ma'lumotlar</h1>
+                        {% endif %}
+                    {% endfor %}
+                </table>
                 <button type="submit" class="btn btn-primary">Saqlash</button>
 
             </form>
         </div>
-{#            <form method="POST" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{#        <label for="img">Image</label>#}
-{#        <input type="file" accept="image/*" name="image" id="img"><br>#}
-{##}
-{#        <label for="title_id">Title</label>#}
-{#        <input type="text" name="title" id="title_id"><br>#}
-{#        <label for="content_id">description</label>#}
-{#        <textarea name="description" id="description_id" cols="30" rows="5"></textarea><br>#}
-{##}
-{#        <label for="category_id">Category</label>#}
-{#        <select name="category" id="category_id" class="category">#}
-{#            <option disabled selected>Select the Category</option>#}
-{#            {% for region in categories %}#}
-{#            <option value="">{{region.name}}</option>#}
-{#            {% endfor %}#}
-{#        </select><br>#}
-{#        <input type="text" name="category_id" id="viloyat_id"><br>#}
-{##}
-{#        <label for="subcategory_id">Sub Category</label>#}
-{#        <select name="subcategory" id="subcategory_id">#}
-{#            <option disabled selected>Select the Sub Category</option>#}
-{#        </select><br>#}
-{#        <input type="hidden" name="subcategory_id" id="tuman_id">#}
-{##}
-{#        <label for="full_name_id">full_name</label>#}
-{#        <input type="text" name="full_name" id="full_name_id"><br>#}
-{##}
-{#        <label for="address_id">Address</label>#}
-{#        <input type="text" name="address" id="address_id"><br>#}
-{##}
-{#        <label for="cost_id">Cost</label>#}
-{#        <input type="text" name="cost" id="cost_id"><br>#}
-{##}
-{##}
-{#        <label for="phone_id">Phone number</label>#}
-{#        <input type="text" name="phone" id="phone_id"><br>#}
-{#        <button type="submit">OK</button>#}
-{#    </form>#}
-{#    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>#}
-{#    <script>#}
-{##}
-{#    $(document).ready(function(){#}
-{#        var tuman_ids = [], selectedRegionIndex = 0;#}
-{#        var t = '{{ subcategories|safe }}';#}
-{#        var tumanlar = JSON.parse(t);#}
-{##}
-{#        $("select.category").change(function(){#}
-{#            console.log(selectedRegionIndex)#}
-{#            tuman_ids = [];#}
-{#            selectedRegionIndex = $(".category option:selected").index();#}
-{#            if (selectedRegionIndex > 1) selectedRegionIndex++;#}
-{#            var tuman = [];#}
-{#            for (var i = 0; i < tumanlar.length; i++){#}
-{#                if (selectedRegionIndex == tumanlar[i].fields.category_id) {tuman_ids.push(tumanlar[i].pk);tuman.push(tumanlar[i].fields.name);}#}
-{#            }#}
-{#            var tuman_options = "";#}
-{#            for (var i = 0; i < tuman.length; i++){#}
-{#                tuman_options += "<option>" + tuman[i] + "</option>";#}
-{#            }#}
-{#            $("#subcategory_id").html(tuman_options);#}
-{#            $("#viloyat_id").val(selectedRegionIndex);#}
-{#            selectedDistrictIndex = $("#subcategory_id option:selected").index();#}
-{#            $("#tuman_id").val(tuman_ids[selectedDistrictIndex]);#}
-{#        });#}
-{##}
-{#        $("#subcategory_id").change(function(){#}
-{#            selectedDistrictIndex = $("#subcategory_id option:selected").index();#}
-{#            console.log(selectedDistrictIndex);#}
-{#            $("#tuman_id").val(tuman_ids[selectedDistrictIndex]);#}
-{#        });#}
-{##}
-{#    });#}
-{##}
-{#    </script>#}
-{#        </div>#}
-{#    </div>#}
-
 {#    ---------------------------avvalgi kodni script qatori--------------------#}
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-{#    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
     <script>
         $("#id_category").change(function () {
             var url = $("#announcementsForm").attr("data-cities-url");

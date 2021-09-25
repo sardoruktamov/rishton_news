@@ -19,6 +19,19 @@ class AnnouncementCreateView(CreateView):
     template_name = "announcement/add.html"
     success_url = reverse_lazy('announcement_list')
 
+    def get_queryset(self):
+        self.object.slug = self.request.POST['title']
+        print(self.object.slug,'11111111111111111111111111111111111111')
+
+        return self.object
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        slug_field = self.request.POST['title']
+        self.object.slug = slug_field
+        print(self.object.slug,'0000000000000000000000000000000000000')
+        return super(AnnouncementCreateView, self).form_valid(form)
+
 
 def add(request):
     categories = Category.objects.all()
