@@ -8,7 +8,7 @@
 {% block content %}
     <div class="container-fluid pb-4 pt-5">
         <div class="container animate-box">
-            <h1>elonlar joylashtirish</h1>
+            <h1>E'lon joylashtirish</h1>
             <form  method="post" id="announcementsForm" data-cities-url="{% url 'ajax_load_subcategory' %}" enctype="multipart/form-data"  novalidate>
                 {% csrf_token %}
 
@@ -18,11 +18,12 @@
                             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                             {{ field|add_class:'form-control' }}
                             {% for error in field.errors %}
-                                <span class="help-block">{{ error }}</span>
+                                <span class="help-block"><div class="alert alert-danger" role="alert">{{ error }}</div></span>
                             {% endfor %}
                         </div>
                         {% if field.label == "Kategoriyaga oid" %}
-                        <h1>Bog'lanish uchun ma'lumotlar</h1>
+                            <br><h1>Bog'lanish uchun ma'lumotlar</h1>
+                            <hr>
                         {% endif %}
                     {% endfor %}
                 </table>

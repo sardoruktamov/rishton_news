@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy
 from .forms import AnnouncementForm
@@ -24,8 +24,24 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         slug_field = self.request.POST['title']
-        self.object.slug = slug_field.replace(" ", "-")
+        self.object.slug = slug_field.replace(" ", "-")  #elon yaratilganda slug maydodidagi bo`sh joylarni "-" bilan almashtirib qoyadi
         return super(AnnouncementCreateView, self).form_valid(form)
+
+class AnnouncementDetailView(DetailView):
+    model = Announcement
+    context_object_name = 'object'
+    template_name = 'announcement/ann_detail.html'
+
+    # def get_queryset(self, request, *args, **kwargs):
+    #     request = self.request
+    #     pk = self.kwargs.get('pk')
+    #     queryset = Announcement.objects.filter(pk=pk)
+    #     return queryset
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super(AnnouncementDetailView, self).get_context_data(**kwargs)
+    #
+    #     return context
 
 
 def add(request):
