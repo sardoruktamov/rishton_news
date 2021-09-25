@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView
 from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy
 from .forms import AnnouncementForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 import json
 from django.core import serializers
 
@@ -13,23 +14,17 @@ class AnnouncementList(ListView):
     template_name = "announcement/announcements.html"
 
 
-class AnnouncementCreateView(CreateView):
+class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     model = Announcement
     form_class = AnnouncementForm
     template_name = "announcement/add.html"
     success_url = reverse_lazy('announcement_list')
 
-    def get_queryset(self):
-        self.object.slug = self.request.POST['title']
-        print(self.object.slug,'11111111111111111111111111111111111111')
-
-        return self.object
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
         slug_field = self.request.POST['title']
-        self.object.slug = slug_field
-        print(self.object.slug,'0000000000000000000000000000000000000')
+        self.object.slug = slug_field.replace(" ", "-")
         return super(AnnouncementCreateView, self).form_valid(form)
 
 
