@@ -4,6 +4,7 @@ from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy
 from .forms import AnnouncementForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from elon.transliterate import to_latin
 import json
 from django.core import serializers
 
@@ -24,7 +25,10 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         slug_field = self.request.POST['title']
-        self.object.slug = slug_field.replace(" ", "-")  #elon yaratilganda slug maydodidagi bo`sh joylarni "-" bilan almashtirib qoyadi
+        if slug_field.isascii():                    # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
+            self.object.slug = slug_field.replace(" ", "-")  #elon yaratilganda slug maydodidagi bo`sh joylarni "-" bilan almashtirib qoyadi
+        else:
+            self.object.slug = to_latin(slug_field).replace(" ", "-") # agar kiritilgan malumot isascii jadvalida bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
 
 class AnnouncementDetailView(DetailView):
