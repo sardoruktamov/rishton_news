@@ -7,13 +7,13 @@ from parler.admin import TranslatableAdmin
 
 @admin.register(Category)
 class CategoryAdmin(TranslatableAdmin):
-    list_display = ('name',)
+    list_display = ('name','image',)
 
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('name',)}
 
 @admin.register(Subcategory)
-class CategoryAdmin(TranslatableAdmin):
+class SubcategoryAdmin(TranslatableAdmin):
     list_display = ('name', 'category',)
 
     def get_prepopulated_fields(self, request, obj=None):
