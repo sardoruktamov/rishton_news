@@ -19,11 +19,11 @@ class CategoryAdmin(TranslatableAdmin):
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('name',)}
 
-class AnnouncementImageAdmin(admin.StackedInline):
+class AnnouncementImageAdmin(admin.TabularInline):
     model = PicturesFromTheAnnouncement
 
 @admin.register(Announcement)
-class BlogAdmin(TranslatableAdmin):
+class Announcementdmin(TranslatableAdmin):
     list_display = ('title', 'description', 'category',)
     list_display_links = ('title',)
     search_fields = ['title', 'description', 'category']
