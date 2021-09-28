@@ -5,3 +5,6 @@ django-taggit==1.5.1
 Pillow==8.3.2
 pytz==2021.1
 sqlparse==0.4.1
+django-crispy-forms==1.7.2
+wincertstore==0.2
+django-dynamic-formsets==0.0.8

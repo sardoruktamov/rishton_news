@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     #other apps
     'parler',
     'widget_tweaks',
+    'crispy_forms',
+    'dynamic_formsets',
 
 ]
 
@@ -88,7 +90,7 @@ WSGI_APPLICATION = 'rishton_news.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
