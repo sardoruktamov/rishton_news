@@ -1,17 +1,19 @@
 from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 
 class Category(TranslatableModel):
     translation = TranslatedFields(
         name=models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Name'))
     )
+    image = models.ImageField(upload_to='category',  blank=True, null=True,)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
 
     class Meta:
         verbose_name = "Kategoriya"
-        verbose_name_plural = "Kategoriyalar"
+        verbose_name_plural = "Elonlar Kategoriyalari"
 
     def __str__(self):
         return self.name
@@ -51,7 +53,10 @@ class Announcement(TranslatableModel):
     full_name = models.CharField(max_length=50)
     address = models.CharField(max_length=250)
     phone = models.CharField(max_length=12)
-    cost = models.CharField(max_length=9, blank=True, null=True)
+    cost = models.CharField(max_length=50, blank=True, null=True)
+    created_by = models.ForeignKey(User,
+                                   related_name="announcement", blank=True, null=True,
+                                   on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ['-created_at']

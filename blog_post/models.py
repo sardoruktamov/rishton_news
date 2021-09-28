@@ -19,7 +19,7 @@ class Category(TranslatableModel):
 
     class Meta:
         verbose_name = "Kategoriya"
-        verbose_name_plural = "Kategoriyalar"
+        verbose_name_plural = " Blog Kategoriyalari"
 
     def __str__(self):
         return str(self.name)
