@@ -15,14 +15,14 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="{% static 'images/carusel/slider-1.jpg' %}"  alt="First slide">
-    </div>
+      <img class="d-block w-100" src="{{ object.image.url }}"  alt="First slide">
+    </div>{% if object.image1 %}
     <div class="carousel-item">
-      <img class="d-block w-100" src="{% static 'images/carusel/slider-2.jpg' %}"  alt="Second slide">
-    </div>
+      <img class="d-block w-100" src="{{ object.image1.url }}"  alt="Second slide">
+    </div>{% endif %}{% if object.image2 %}
     <div class="carousel-item">
-      <img class="d-block w-100" src="{% static 'images/carusel/slider-3.jpg' %}"  alt="Third slide">
-    </div>
+      <img class="d-block w-100" src="{{ object.image2.url }}"  alt="Third slide">
+    </div>{% endif %}
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -40,46 +40,20 @@
     <div class="container paddding">
         <div class="row mx-0">
             <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
-                <p>{{ object.description }}
-                </p>
-                <p>
-                    Nulla tincidunt sit amet ligula interdum pulvinar. Sed nec volutpat enim. Praesent pretium
-                    ullamcorper
-                    quam, at rhoncus magna consectetur quis. Nulla condimentum, libero vel varius sodales, lacus urna
-                    accumsan purus, at
-                    mattis nisi nibh in lorem. Sed laoreet, ante vitae tincidunt auctor, sapien metus tincidunt ante,
-                    quis aliquam lacus risus id quam.
-                </p>
+                <p>Sarlavha: {{ object.title }}</p>
+                <p>Tovar xaqida to`liq ma`lumot: {{ object.description }}</p>
+                <p>Kategoriya: {{ object.category }}</p>
+                <p>{{ object.subcategory }}</p>
+                <p>Narxi: {{ object.cost }}</p>
+                <h2>bog'lanish uchun</h2>
+                <p>FIO: {{ object.full_name }}</p>
+                <p>Manzil: {{ object.address }}</p>
+                <p>Telefon: {{ object.phone }}</p>
+
                 {% for img in object.picturefromblog.all %}
                     <img src="{{ img.image.url }}" class="img-movie-shots" width="45%">
                 {% endfor %}
-                <h3>Free HTML5 Templates</h3>
-                <p>
-                    Nam vehicula viverra quam, nec ornare ex convallis eget. Praesent pulvinar, justo at lacinia
-                    elementum, dolor elit facilisis massa, vel feugiat elit massa et libero. Praesent hendrerit metus eu
-                    elementum commodo. Morbi tempus mi a nulla scelerisque, vitae vulputate nisi commodo. Maecenas felis
-                    urna, dictum quis mollis quis, mollis vel ligula. Nullam sodales sapien tellus, ornare tincidunt
-                    dolor imperdiet at. Vestibulum convallis, felis quis condimentum finibus, justo lectus aliquam
-                    libero, eu lacinia tellus leo eu orci.
-                </p>
-                <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, modi!</li>
-                    <li>Ea iure at, debitis culpa perspiciatis suscipit laudantium a, expedita.</li>
-                    <li>Voluptate distinctio perspiciatis cum sed ipsum nisi accusantium a aut!</li>
-                    <li>Sed vel quo dignissimos, quaerat totam officia, deserunt provident minus.</li>
-                </ul>
-                <p>
-                    Maecenas consequat dictum aliquam. Praesent nec magna at ipsum facilisis dictum sit amet nec arcu.
-                    Donec ac metus a elit rhoncus euismod et sit amet velit. Nunc quis lacus vel metus tincidunt
-                    vulputate in et libero. Aliquam dolor lacus, facilisis ultrices rutrum in, blandit vitae nulla.
-                    Nullam vestibulum, odio vitae aliquam aliquam, nibh dui iaculis augue, ut tristique nisi est in
-                    tellus. Fusce volutpat ultricies venenatis. In a arcu in tellus tincidunt accumsan. Nulla pretium at
-                    ex viverra vulputate. Cras mollis velit metus, non suscipit felis luctus sit amet. Ut vel leo vitae
-                    magna blandit tempor in sit amet arcu. Donec dignissim mattis dui. Donec ultrices malesuada sapien,
-                    ut fermentum nisi efficitur eu. Phasellus dui eros, posuere vel lacus vitae, venenatis feugiat
-                    libero. Nunc sed nisi feugiat, consequat arcu id, vehicula augue. Donec viverra tincidunt nisi eget
-                    ornare.
-                </p>
+
             </div>
             <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
                 <div>
