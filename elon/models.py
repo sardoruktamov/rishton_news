@@ -47,6 +47,8 @@ class Announcement(TranslatableModel):
     slug = models.SlugField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, )
     image = models.ImageField(upload_to='elonimages')
+    image1 = models.ImageField(upload_to='elonimages', null=True, blank=True)
+    image2 = models.ImageField(upload_to='elonimages', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, blank=True)
     is_public = models.BooleanField(default=False)
