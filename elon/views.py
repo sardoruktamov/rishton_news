@@ -24,16 +24,20 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         slug_field = self.request.POST['title']
-        if slug_field.isascii():                    # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
-            self.object.slug = slug_field.replace(" ", "-")  #elon yaratilganda slug maydodidagi bo`sh joylarni "-" bilan almashtirib qoyadi
+        if slug_field.isascii():  # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
+            self.object.slug = slug_field.replace(" ",
+                                                  "-")  # elon yaratilganda slug maydodidagi bo`sh joylarni "-" bilan almashtirib qoyadi
         else:
-            self.object.slug = to_latin(slug_field).replace(" ", "-") # agar kiritilgan malumot isascii jadvalida bol,asa lotin yozuviga aylantiriladi
+            self.object.slug = to_latin(slug_field).replace(" ",
+                                                            "-")  # agar kiritilgan malumot isascii jadvalida bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
+
 
 class AnnouncementDetailView(DetailView):
     model = Announcement
     context_object_name = 'object'
     template_name = 'announcement/ann_detail.html'
+
 
 def load_category(request):
     category_id = request.GET.get('category_id')
@@ -61,16 +65,18 @@ def load_category(request):
 #     context = {'form': form}
 #     return render(request, 'announcement/ann_update.html', context)
 
-def edit_announcement(request,slug):
-    post= Announcement.objects.get(slug=slug)
-    if request.method=="POST":
-        form=AnnouncementForm(request.POST,instance=post)
+def edit_announcement(request, slug):
+    post = Announcement.objects.get(slug=slug)
+    print(post,'+++++++++++++++++++')
+    if request.method == "POST":
+        form = AnnouncementForm(request.POST, instance=post)
         if form.is_valid():
-            post=form.save(commit=False)
+            post = form.save(commit=False)
             post.tags.update()
             post.save()
             return redirect("edit_post", slug=post.slug)
         else:
-            form=AnnouncementForm(instance=post)
-    form=AnnouncementForm(instance=post)
-    return render(request,'announcement/ann_update.html',context={'form':form,"post":post})
+            form = AnnouncementForm(instance=post)
+    form = AnnouncementForm(instance=post)
+    print(form,'-------------------------------')
+    return render(request, 'announcement/ann_update.html', context={'form': form, "post": post})

@@ -15,15 +15,19 @@ class AnnouncementForm(TranslatableModelForm):
                   'full_name':'Ism familya',
                   'address':'Manzil', 'phone':'Telefon'}
         widgets = {
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
-            'image1': forms.FileInput(attrs={'class': 'form-control'}),
-            'image2': forms.FileInput(attrs={'class': 'form-control'}),
+            # 'image': forms.FileInput(attrs={'class': 'form-control'}),
+            # 'image1': forms.FileInput(attrs={'class': 'form-control'}),
+            # 'image2': forms.FileInput(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'mahsulot haqida qisqacha ma\'lumot kiriting...(e\'tibor qiling! xaridor birinchi bo\'lib shu qismga e\'tibor qaratadi)'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows':'5', 'placeholder':'mahsulot haqida to\'liqroq ma\'lumot kiriting...'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows':'6', 'placeholder':'mahsulot haqida to\'liqroq ma\'lumot kiriting...'}),
             'category': forms.Select(
                 attrs={'class': 'form-control mb-3', 'aria-label': 'Floating form-select-lg example'}),
             'subcategory': forms.Select(
-                attrs={'class': 'form-control mb-3', 'aria-label': 'Floating form-select-lg example'})
+                attrs={'class': 'form-control mb-3', 'aria-label': 'Floating form-select-lg example'}),
+            'full_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'cost': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
 
@@ -38,4 +42,4 @@ class AnnouncementForm(TranslatableModelForm):
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:
-            self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('title')
+            self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('translation')
