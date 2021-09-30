@@ -45,11 +45,22 @@ def load_category(request):
     return render(request, "announcement/category_dropdown.html", {'subcategory': subcategory})
 
 
-# class AnnouncementUpdateView(UpdateView):
-#     model = Announcement
-#     form_class = AnnouncementForm
-#     template_name = "announcement/ann_update.html"
-#     success_url = reverse_lazy('announcement_list')
+class AnnouncementUpdateView(UpdateView):
+    model = Announcement
+    form_class = AnnouncementForm
+    template_name = "announcement/ann_update.html"
+    success_url = reverse_lazy('announcement_list')
+    
+
+def edit_announcement(request, slug):
+    person = get_object_or_404(Announcement, slug=slug)
+    form = AnnouncementForm(instance=person)
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST, instance=person)
+        if form.is_valid():
+            form.save()
+            return redirect('ann_update', slug=slug)
+    return render(request, 'announcement/ann_update.html', {'form': form})
 
 # def edit_announcement(request, id):
 #     elon = get_object_or_404(Announcement, pk=id)
@@ -65,18 +76,18 @@ def load_category(request):
 #     context = {'form': form}
 #     return render(request, 'announcement/ann_update.html', context)
 
-def edit_announcement(request, slug):
-    post = Announcement.objects.get(slug=slug)
-    print(post,'+++++++++++++++++++')
-    if request.method == "POST":
-        form = AnnouncementForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.tags.update()
-            post.save()
-            return redirect("edit_post", slug=post.slug)
-        else:
-            form = AnnouncementForm(instance=post)
-    form = AnnouncementForm(instance=post)
-    print(form,'-------------------------------')
-    return render(request, 'announcement/ann_update.html', context={'form': form, "post": post})
+# def edit_announcement(request, slug):
+#     post = Announcement.objects.get(slug=slug)
+#     print(post,'+++++++++++++++++++')
+#     if request.method == "POST":
+#         form = AnnouncementForm(request.POST, instance=post)
+#         if form.is_valid():
+#             post = form.save(commit=False)
+#             post.tags.update()
+#             post.save()
+#             return redirect("edit_post", slug=post.slug)
+#         else:
+#             form = AnnouncementForm(instance=post)
+#     form = AnnouncementForm(instance=post)
+#     print(form,'-------------------------------')
+#     return render(request, 'announcement/ann_update.html', context={'form': form, "post": post})

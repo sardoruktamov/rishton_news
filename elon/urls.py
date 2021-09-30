@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     AnnouncementList, AnnouncementCreateView,
-    load_category, AnnouncementDetailView, edit_announcement
+    load_category, AnnouncementDetailView , edit_announcement
     )
 
 urlpatterns = [
