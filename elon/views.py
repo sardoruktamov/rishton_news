@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy
@@ -21,7 +21,6 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
     template_name = "announcement/add.html"
     success_url = reverse_lazy('announcement_list')
 
-
     def form_valid(self, form):
         self.object = form.save(commit=False)
         slug_field = self.request.POST['title']
@@ -36,61 +35,42 @@ class AnnouncementDetailView(DetailView):
     context_object_name = 'object'
     template_name = 'announcement/ann_detail.html'
 
-    # def get_queryset(self, request, *args, **kwargs):
-    #     request = self.request
-    #     pk = self.kwargs.get('pk')
-    #     queryset = Announcement.objects.filter(pk=pk)
-    #     return queryset
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super(AnnouncementDetailView, self).get_context_data(**kwargs)
-    #
-    #     return context
-
-
-def add(request):
-    categories = Category.objects.all()
-    json_serializer = serializers.get_serializer("json")()
-    subcategories = json_serializer.serialize(Subcategory.objects.all(), ensure_ascii=False)
-    announcements = Announcement.objects.all()
-
-    if request.method == 'POST' and request.FILES:
-        image = request.FILES.get('image')
-        title = request.POST['title']
-        description = request.POST['description']
-        category_id = request.POST['category_id']
-        subcategory_id = request.POST['subcategory_id']
-        full_name = request.POST['full_name']
-        address = request.POST['address']
-        cost = request.POST['cost']
-        phone = request.POST.get('phone', '')
-
-        announcement = Announcement(
-            image=image,
-            title=title,
-            description=description,
-            category_id=category_id,
-            subcategory_id=subcategory_id,
-            full_name=full_name,
-            address=address,
-            cost=cost,
-            phone=phone,
-        )
-        announcement.save()
-    return render(request, 'announcement/add.html', {
-                      'categories': categories,
-                      'subcategories': subcategories,
-                      'announcements': announcements,
-                  })
-
 def load_category(request):
     category_id = request.GET.get('category_id')
     subcategory = Subcategory.objects.filter(category_id=category_id).all()
     return render(request, "announcement/category_dropdown.html", {'subcategory': subcategory})
 
 
-class AnnouncementUpdateView(UpdateView):
-    model = Announcement
-    form_class = AnnouncementForm
-    # template_name = "announcement/add.html"
-    success_url = reverse_lazy('announcement_list')
+# class AnnouncementUpdateView(UpdateView):
+#     model = Announcement
+#     form_class = AnnouncementForm
+#     template_name = "announcement/ann_update.html"
+#     success_url = reverse_lazy('announcement_list')
+
+# def edit_announcement(request, id):
+#     elon = get_object_or_404(Announcement, pk=id)
+#     form = AnnouncementForm(instance=elon)
+#     print(elon,'++++++++++++++++')
+#     if request.method == 'POST':
+#
+#         form = AnnouncementForm(request.POST, request.FILES, instance=elon)
+#
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/elonlar/')
+#     context = {'form': form}
+#     return render(request, 'announcement/ann_update.html', context)
+
+def edit_announcement(request,slug):
+    post= Announcement.objects.get(slug=slug)
+    if request.method=="POST":
+        form=AnnouncementForm(request.POST,instance=post)
+        if form.is_valid():
+            post=form.save(commit=False)
+            post.tags.update()
+            post.save()
+            return redirect("edit_post", slug=post.slug)
+        else:
+            form=AnnouncementForm(instance=post)
+    form=AnnouncementForm(instance=post)
+    return render(request,'announcement/ann_update.html',context={'form':form,"post":post})
