@@ -6,8 +6,7 @@ from .forms import AnnouncementForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from elon.transliterate import to_latin
 from django.contrib.messages.views import SuccessMessageMixin
-import json
-from django.core import serializers
+
 
 
 class AnnouncementList(ListView):
@@ -19,8 +18,8 @@ class AnnouncementList(ListView):
 class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Announcement
     form_class = AnnouncementForm
-    template_name = "announcement/add.html"
-    success_message = "E'loningiz muvoffaqiyatli yaratildi, Bizning xizmatimizdan foydalanganingiz uchun raxmat!"
+    template_name = "announcement/add_and_update.html"
+    success_message = "E'loningiz muvoffaqiyatli yaratildi! Bizning xizmatimizdan foydalanganingiz uchun raxmat!"
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -34,7 +33,6 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
         return super(AnnouncementCreateView, self).form_valid(form)
 
     def get_success_url(self, **kwargs):
-        print(self.object.slug,'+++++++++++++++++++++++++')
         return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
 
@@ -53,51 +51,21 @@ def load_category(request):
 class AnnouncementUpdateView(SuccessMessageMixin, UpdateView):
     model = Announcement
     form_class = AnnouncementForm
-    template_name = "announcement/ann_update.html"
+    template_name = "announcement/add_and_update.html"
     success_message = "E'loningiz muvoffaqiyatli o'zgartirildi!"
-    # success_url = reverse_lazy('announcement_list')
+    success_url = reverse_lazy('announcement_list')
 
-    def get_success_url(self, **kwargs):
-        return reverse("ann_update")
+    # def get_success_url(self, **kwargs):
+    #     return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
 
 def edit_announcement(request, slug):
-    person = get_object_or_404(Announcement, slug=slug)
-    form = AnnouncementForm(instance=person)
+    announ = get_object_or_404(Announcement, slug=slug)
+    form = AnnouncementForm(instance=announ)
     if request.method == 'POST':
-        form = AnnouncementForm(request.POST, instance=person)
+        form = AnnouncementForm(request.POST, instance=announ)
         if form.is_valid():
             form.save()
-            render(request, 'announcement/add.html',
+            return render(request, 'announcement/add_and_update.html',
                    {'form': form, 'message': "E'loningiz muvoffaqiyatli o'zgartirildi!"})
-    return render(request, 'announcement/add.html', {'form': form, 'message': "E'loningiz muvoffaqiyatli o'zgartirildi!"})
-
-# def edit_announcement(request, id):
-#     elon = get_object_or_404(Announcement, pk=id)
-#     form = AnnouncementForm(instance=elon)
-#     print(elon,'++++++++++++++++')
-#     if request.method == 'POST':
-#
-#         form = AnnouncementForm(request.POST, request.FILES, instance=elon)
-#
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/elonlar/')
-#     context = {'form': form}
-#     return render(request, 'announcement/ann_update.html', context)
-
-# def edit_announcement(request, slug):
-#     post = Announcement.objects.get(slug=slug)
-#     print(post,'+++++++++++++++++++')
-#     if request.method == "POST":
-#         form = AnnouncementForm(request.POST, instance=post)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.tags.update()
-#             post.save()
-#             return redirect("edit_post", slug=post.slug)
-#         else:
-#             form = AnnouncementForm(instance=post)
-#     form = AnnouncementForm(instance=post)
-#     print(form,'-------------------------------')
-#     return render(request, 'announcement/ann_update.html', context={'form': form, "post": post})
+    return render(request, 'announcement/add_and_update.html', {'form': form})

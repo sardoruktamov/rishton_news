@@ -7,8 +7,14 @@
 {% endblock title %}
 
 {% block content %}
+
     <div class="container-fluid pb-4 pt-5">
         <div class="container animate-box">
+        {% if message %}
+         <div class="alert alert-success" role="alert">
+                 {{ message|safe }}
+             </div>
+         {% endif %}
             <h1>E'lon joylashtirish</h1>
             <form  method="post" id="announcementsForm" data-cities-url="{% url 'ajax_load_subcategory' %}" enctype="multipart/form-data"  novalidate>
                 {% csrf_token %}
@@ -29,7 +35,7 @@
 
                     {% endfor %}
                 </table>
-                <button type="submit" class="btn btn-primary">Saqlash</button>
+                <button type="submit" class="btn btn-success">Saqlash</button>
 
             </form>
         </div>
