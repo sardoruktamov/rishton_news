@@ -60,7 +60,11 @@
             <div class="row">
                 <h2><button type="button" class="btn btn-outline-warning ml-3" data-toggle="modal" data-target="#exampleModalCenter">Bog'lanish</button></h2>
                 <h2><a href="{% url 'ann_update' object.slug %}" class="btn btn-outline-success ml-3">Tahrirlash</a></h2>
-                <h2><button type="button" class="btn btn-outline-danger ml-3">O`chirish</button></h2>
+                <h2><button type="submit" class="btn btn-outline-danger ml-3" data-toggle="modal" data-target="#exampleModal">O`chirish</button></h2>
+
+
+
+
             </div>
 
 
@@ -68,6 +72,7 @@
 
             </div>
             <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+
 
                 <div>
                     <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">O'xshash e'lonlash</div>
@@ -111,28 +116,48 @@
         </div>
     </div>
 </div>
-    <!-- ---------------Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Bog'lanish uchun</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p><b> FIO:</b> {{ object.full_name }}</p>
-        <p><b> Manzil:</b> {{ object.address }}</p>
-        <p><b> Telefon:</b> +{{ object.phone }}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Yopish</button>
-      </div>
-    </div>
-  </div>
-</div>
-    <!-- ---------------Modal -->
+    <!-- o'chirish tugmasi uchun modal -->
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Haqiqattan ham ushbu e'lonni o'chirmoqchimisiz?</h5>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                                  <form action="{% url 'ann_delete' object.slug %}" method="post" >
+                                  {% csrf_token %}
+                                  <button  class="btn btn-danger">O'chirish</button>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                    <!-- </div> -->
+                    <!-- --------------Bog'lanish tugmasi uchun-Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Bog'lanish uchun</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p><b> FIO:</b> {{ object.full_name }}</p>
+                        <p><b> Manzil:</b> {{ object.address }}</p>
+                        <p><b> Telefon:</b> +{{ object.phone }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Yopish</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    <!-- --------------------Modal -->
 <div class="container-fluid pb-4 pt-5">
     <div class="container animate-box">
         <div>

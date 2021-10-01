@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy, reverse
 from .forms import AnnouncementForm
@@ -69,3 +69,9 @@ def edit_announcement(request, slug):
             return render(request, 'announcement/add_and_update.html',
                    {'form': form, 'message': "E'loningiz muvoffaqiyatli o'zgartirildi!"})
     return render(request, 'announcement/add_and_update.html', {'form': form})
+
+def delete_announcement(request, slug):
+    elon = get_object_or_404(Announcement, slug=slug)
+    if request.method == "POST":
+        elon.delete()
+        return redirect('announcement_list')
