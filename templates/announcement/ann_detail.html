@@ -8,6 +8,13 @@
 {% block content %}
 <div class="container mt-2">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style=" height: 30px; border-radius: 50%"></li>
     {% if object.image1 %}<li data-target="#carouselExampleIndicators" data-slide-to="1" style=" height: 30px; border-radius: 50%"></li>{% endif %}

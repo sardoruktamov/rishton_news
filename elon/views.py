@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .models import Category, Subcategory, Announcement
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .forms import AnnouncementForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from elon.transliterate import to_latin
+from django.contrib.messages.views import SuccessMessageMixin
 import json
 from django.core import serializers
 
@@ -15,11 +16,11 @@ class AnnouncementList(ListView):
     template_name = "announcement/announcements.html"
 
 
-class AnnouncementCreateView(LoginRequiredMixin, CreateView):
+class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Announcement
     form_class = AnnouncementForm
     template_name = "announcement/add.html"
-    success_url = reverse_lazy('announcement_list')
+    success_message = "E'loningiz muvoffaqiyatli yaratildi, Bizning xizmatimizdan foydalanganingiz uchun raxmat!"
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -31,6 +32,10 @@ class AnnouncementCreateView(LoginRequiredMixin, CreateView):
             self.object.slug = to_latin(slug_field).replace(" ",
                                                             "-")  # agar kiritilgan malumot isascii jadvalida bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
+
+    def get_success_url(self, **kwargs):
+        print(self.object.slug,'+++++++++++++++++++++++++')
+        return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
 
 class AnnouncementDetailView(DetailView):
@@ -45,12 +50,16 @@ def load_category(request):
     return render(request, "announcement/category_dropdown.html", {'subcategory': subcategory})
 
 
-class AnnouncementUpdateView(UpdateView):
+class AnnouncementUpdateView(SuccessMessageMixin, UpdateView):
     model = Announcement
     form_class = AnnouncementForm
     template_name = "announcement/ann_update.html"
-    success_url = reverse_lazy('announcement_list')
-    
+    success_message = "E'loningiz muvoffaqiyatli o'zgartirildi!"
+    # success_url = reverse_lazy('announcement_list')
+
+    def get_success_url(self, **kwargs):
+        return reverse("ann_update")
+
 
 def edit_announcement(request, slug):
     person = get_object_or_404(Announcement, slug=slug)
@@ -59,8 +68,9 @@ def edit_announcement(request, slug):
         form = AnnouncementForm(request.POST, instance=person)
         if form.is_valid():
             form.save()
-            return redirect('ann_update', slug=slug)
-    return render(request, 'announcement/ann_update.html', {'form': form})
+            render(request, 'announcement/add.html',
+                   {'form': form, 'message': "E'loningiz muvoffaqiyatli o'zgartirildi!"})
+    return render(request, 'announcement/add.html', {'form': form, 'message': "E'loningiz muvoffaqiyatli o'zgartirildi!"})
 
 # def edit_announcement(request, id):
 #     elon = get_object_or_404(Announcement, pk=id)
