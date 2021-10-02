@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <titl>Rishton tumanining yangiliklar saytiga hush kelibsiz!</titl>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid pb-4 pt-4 paddding">
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">News</div>
+                </div>
+                {% if object_list %}
+                {% for obj in object_list %}
+                <div class="row pb-4">
+                    <div class="col-md-5">
+                        <div class="fh5co_hover_news_img">
+                            <div class="fh5co_news_img"><img src="{{ obj.image.url }}" alt=""/></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 animate-box">
+                        <a href="../single.html" class="fh5co_magna py-2"> {{ obj.title }} </a>
+                        <p class="fh5co_mini_time py-3"> &nbsp;&nbsp;&nbsp;{{ obj.created_at|date:'d/m/Y' }}</p>
+                        <div class="fh5co_consectetur"> {{ obj.description| truncatechars:150 }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <h1>mavjud emas
+            </h1>
+            {% endif %}
+                <div class="row pb-4">
+                    <div class="col-md-5">
+                        <div class="fh5co_hover_news_img">
+                            <div class="fh5co_news_img"><img src="{% static 'images/office-768x512.jpg'  %}" alt=""/></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <a href="../single.html" class="fh5co_magna py-2"> Magna aliqua ut enim ad minim veniam quis
+                        nostrud quis xercitation ullamco. </a> <a href="#" class="fh5co_mini_time py-3"> Thomson Smith -
+                        April 18,2016 </a>
+                        <div class="fh5co_consectetur"> Amet consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Tags</div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="fh5co_tags_all">
+                    {% for tag in tags %}
+                    <a href="{% url 'tagged_blogs' tag.name %}" class="fh5co_tagg">#{{ tag.name }}</a>
+                    {% endfor %}
+
+{#                    <a href="#" class="fh5co_tagg">Technology</a>#}
+{#                    <a href="#" class="fh5co_tagg">Sport</a>#}
+{#                    <a href="#" class="fh5co_tagg">Art</a>#}
+{#                    <a href="#" class="fh5co_tagg">Lifestyle</a>#}
+{#                    <a href="#" class="fh5co_tagg">Three</a>#}
+{#                    <a href="#" class="fh5co_tagg">Photography</a>#}
+{#                    <a href="#" class="fh5co_tagg">Lifestyle</a>#}
+{#                    <a href="#" class="fh5co_tagg">Art</a>#}
+{#                    <a href="#" class="fh5co_tagg">Education</a>#}
+{#                    <a href="#" class="fh5co_tagg">Social</a>#}
+{#                    <a href="#" class="fh5co_tagg">Three</a>#}
+                </div>
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Most Popular</div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-5 align-self-center">
+                        <img src="images/download (1).jpg" alt="img" class="fh5co_most_trading"/>
+                    </div>
+                    <div class="col-7 paddding">
+                        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.</div>
+                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-5 align-self-center">
+                        <img src="images/allef-vinicius-108153.jpg" alt="img" class="fh5co_most_trading"/>
+                    </div>
+                    <div class="col-7 paddding">
+                        <div class="most_fh5co_treding_font"> Enim ad minim veniam nostrud xercitation ullamco.</div>
+                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-5 align-self-center">
+                        <img src="images/download (2).jpg" alt="img" class="fh5co_most_trading"/>
+                    </div>
+                    <div class="col-7 paddding">
+                        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.</div>
+                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-5 align-self-center"><img src="images/seth-doyle-133175.jpg" alt="img"
+                                                              class="fh5co_most_trading"/></div>
+                    <div class="col-7 paddding">
+                        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.</div>
+                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row mx-0">
+                <div class="col-12 text-center pb-4 pt-4">
+                {% if page_obj.has_previous %}
+                    {% if page_obj.number|add:'-3' > 1 %}
+                        <a class="btn_pagging" href="?page=1">1</a>
+                    {% endif %}
+                    {% if page_obj.number|add:'-3' >= 3 %}
+                        <a class="btn_pagging" href="?page={{ page_obj.previous_page_number|add:'-3' }}">
+                            <span class="pagination__link">• • •</span>
+                        </a>
+                    {% endif %}
+                {% endif %}
+                {% if paginator.page_range|length > 1 %}
+                    {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <a class="btn_pagging" href="#">{{ i }}</a>
+                        {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
+                            <a class="btn_pagging" href="?page={{ i }}">{{ i }}</a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if page_obj.has_next %}
+                    {% if page_obj.number|add:'4' < page_obj.paginator.num_pages %}
+                        <a class="btn_pagging" href="?page={{ page_obj.next_page_number|add:'3' }}">
+                            <span class="pagination__link">• • •</span>
+                        </a>
+                    {% endif %}
+                    {% if page_obj.number|add:'3' < page_obj.paginator.num_pages %}
+                        <a class="btn_pagging" href="?page={{ page_obj.paginator.num_pages }}">
+                            {{ page_obj.paginator.num_pages }}
+                        </a>
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
+    </div>
+</div>
+
+
+{% endblock content %}

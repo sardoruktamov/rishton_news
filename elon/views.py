@@ -6,6 +6,7 @@ from .forms import AnnouncementForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from elon.transliterate import to_latin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
 
 
 
@@ -13,6 +14,11 @@ class AnnouncementList(ListView):
     model = Announcement
     context_object_name = "announcement"
     template_name = "announcement/announcements.html"
+    paginate_by = 16
+
+    def get_queryset(self):
+        queryset = Announcement.objects.filter(is_public=True)
+        return queryset
 
 
 class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -63,7 +69,7 @@ def edit_announcement(request, slug):
     announ = get_object_or_404(Announcement, slug=slug)
     form = AnnouncementForm(instance=announ)
     if request.method == 'POST':
-        form = AnnouncementForm(request.POST, instance=announ)
+        form = AnnouncementForm(request.POST, request.FILES, instance=announ)
         if form.is_valid():
             form.save()
             return render(request, 'announcement/add_and_update.html',
@@ -75,3 +81,13 @@ def delete_announcement(request, slug):
     if request.method == "POST":
         elon.delete()
         return redirect('announcement_list')
+
+
+class CategoryFilter(ListView):
+    model = Announcement
+    template_name = 'announcement/filter.html'
+    paginate_by = 5
+
+    def get_queryset(self, **kwargs):
+        queryset = self.model.objects.filter(category__slug=self.kwargs.get('slug'))
+        return queryset
