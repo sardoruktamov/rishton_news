@@ -1,10 +1,140 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block title %}
-    <titl>Rishton tumanining yangiliklar saytiga hush kelibsiz!</titl>
-{% endblock title %}
+<!DOCTYPE html>
 
-{% block content %}
+<html lang="en" class="no-js">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>24 News — Free Website Template, Free HTML5 Template by FreeHTML5.co</title>
+    <link href="{% static 'css/media_query.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/owl.theme.default.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/style_1.css' %}" rel="stylesheet" type="text/css"/>
+
+    <!-- Modernizr JS -->
+    <script src="{% static 'js/modernizr-3.5.0.min.js' %}"></script>
+
+</head>
+
+<div class="container-fluid fh5co_header_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 fh5co_mediya_center"><a href="#" class="color_fff fh5co_mediya_setting"><i
+                    class="fa fa-clock-o"></i>&nbsp;&nbsp;&nbsp;Friday, 5 January 2018</a>
+                <div class="d-inline-block fh5co_trading_posotion_relative"><a href="#" class="treding_btn">Trending</a>
+                    <div class="fh5co_treding_position_absolute"></div>
+                </div>
+                <a href="#" class="color_fff fh5co_mediya_setting">Instagram’s big redesign goes live with
+                    black-and-white app</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-3 fh5co_padding_menu">
+                <img src="{% static 'images/logo.png' %}" alt="img" class="fh5co_logo_width"/>
+            </div>
+            <div class="col-12 col-md-9 align-self-center fh5co_mediya_right">
+                <div class="text-center d-inline-block">
+                    <a class="fh5co_display_table">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-search"></i></div>
+                    </a>
+                </div>
+                <div class="text-center d-inline-block">
+                    <a class="fh5co_display_table">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div>
+                    </a>
+                </div>
+                <div class="text-center d-inline-block">
+                    <a class="fh5co_display_table">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div>
+                    </a>
+                </div>
+                <div class="text-center d-inline-block">
+                    <a href="https://twitter.com/fh5co" target="_blank" class="fh5co_display_table">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div>
+                    </a>
+                </div>
+                <div class="text-center d-inline-block">
+                    <a href="https://fb.com/fh5co" target="_blank" class="fh5co_display_table">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
+                    </a>
+                </div>
+                <!--<div class="d-inline-block text-center"><img src="images/country.png" alt="img" class="fh5co_country_width"/></div>-->
+                <div class="d-inline-block text-center dd_position_relative ">
+                    <select class="form-control fh5co_text_select_option">
+                        <option>O'zbek</option>
+                        <option>Русский</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-faded fh5co_padd_mediya padding_786">
+    <div class="container padding_786">
+        <nav class="navbar navbar-toggleable-md navbar-light ">
+            <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+            <a class="navbar-brand" href="{% url 'homepage' %}"><img src="{% static 'images/logo.png' %}" alt="img"
+                                                                     class="mobile_logo_width"/></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
+                            <a class="dropdown-item" href="{% url 'blogpage' %}">Barchasi </a>
+                            {% for cat in all_category %}
+                                <a class="dropdown-item" href="{% url 'categories' cat.slug %}">{{ cat.name }} </a>
+                            {% endfor %}
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">E'lonlar<span class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
+                            <a class="dropdown-item" href="{% url 'announcement_list' %}">Barcha e'lonlar</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Shaxsiy<span class="sr-only">(current)</span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
+                            <a class="dropdown-item" href="{% url 'announcement_create' %}">E'lon berish</a>
+                            <a class="dropdown-item" href="#">Shaxsiy sahifa</a>
+                            <a class="dropdown-item" href="#">mening e'lonlarim</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
 <div class="container-fluid pt-3">
     <div class="container animate-box" data-animate-effect="fadeIn">
         <div>
@@ -14,11 +144,11 @@
             {% for obj in all_ann_category %}
             <div class="item px-2">
                 <div class="fh5co_latest_trading_img_position_relative">
-                    <div class="fh5co_latest_trading_img"><img src="{{ obj.image.url }}" alt=""
-                                                           class="fh5co_img_special_relative"/></div>
+                    <div class="fh5co_latest_trading_img" style="height: 160px">
+                    <img src="{{ obj.image.url }}" alt="" style="height: 160px"  /></div>
                     <div class="fh5co_latest_trading_img_position_absolute"></div>
                     <div class="fh5co_latest_trading_img_position_absolute_1">
-                        <h4><a href="" class="text-white mb-5"> {{ obj.name }} </a></h4>
+                        <h4><a href="{{ obj.get_absolute_url }}" class="text-white mb-5"> {{ obj.name }} </a></h4>
                     </div>
                 </div>
             </div>
@@ -34,6 +164,35 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-3">
+    <div class="container animate-box" data-animate-effect="fadeIn">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Eng so'ngi e'lonlar</div>
+        </div>
+
+
+        <main>
+            <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+                <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+                    {% for obj in announcement %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm"> <img src="{{ obj.image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary">{{ obj.cost}}</span>
+                                <span class="float-end price-hp"><i class="fa fa-clock-o"></i> {{ obj.created_at|date:"d M Y" }}</span> </div>
+                                <h5 class="card-title">{{ obj.title }}</h5>
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ obj.address }}</p>
+                                <div class="text-center my-4"> <a href="{% url 'ann_detail' obj.slug %}" class="btn btn-warning">Batafsil...</a> </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
     </div>
 </div>
 <div class="container-fluid pb-4 pt-5">
@@ -337,17 +496,155 @@
                 </div>
             </div>
         </div>
-        <div class="row mx-0 animate-box" data-animate-effect="fadeInUp">
-            <div class="col-12 text-center pb-4 pt-4">
-                <a href="#" class="btn_mange_pagging"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp; Previous</a>
-                <a href="#" class="btn_pagging">1</a>
-                <a href="#" class="btn_pagging">2</a>
-                <a href="#" class="btn_pagging">3</a>
-                <a href="#" class="btn_pagging">...</a>
-                <a href="#" class="btn_mange_pagging">Next <i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp; </a>
-             </div>
+            <div class="row mx-0">
+                <div class="col-12 text-center pb-4 pt-4">
+                {% if page_obj.has_previous %}
+                    {% if page_obj.number|add:'-3' > 1 %}
+                        <a class="btn_pagging" href="?page=1">1</a>
+                    {% endif %}
+                    {% if page_obj.number|add:'-3' >= 3 %}
+                        <a class="btn_pagging" href="?page={{ page_obj.previous_page_number|add:'-3' }}">
+                            <span class="pagination__link">• • •</span>
+                        </a>
+                    {% endif %}
+                {% endif %}
+                {% if paginator.page_range|length > 1 %}
+                    {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <a class="btn_pagging" href="#">{{ i }}</a>
+                        {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
+                            <a class="btn_pagging" href="?page={{ i }}">{{ i }}</a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if page_obj.has_next %}
+                    {% if page_obj.number|add:'4' < page_obj.paginator.num_pages %}
+                        <a class="btn_pagging" href="?page={{ page_obj.next_page_number|add:'3' }}">
+                            <span class="pagination__link">• • •</span>
+                        </a>
+                    {% endif %}
+                    {% if page_obj.number|add:'3' < page_obj.paginator.num_pages %}
+                        <a class="btn_pagging" href="?page={{ page_obj.paginator.num_pages }}">
+                            {{ page_obj.paginator.num_pages }}
+                        </a>
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="container-fluid fh5co_footer_bg pb-3">
+    <div class="container animate-box">
+        <div class="row">
+            <div class="col-12 spdp_right py-5">
+                <img src="{% static 'images/white_logo.png' %}" alt="img" class="footer_logo"/></div>
+            <div class="clearfix"></div>
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="footer_main_title py-3"> About</div>
+                <div class="footer_sub_about pb-3"> Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                    unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </div>
+                <div class="footer_mediya_icon">
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div>
+                    </a></div>
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div>
+                    </a></div>
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div>
+                    </a></div>
+                    <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                        <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
+                    </a></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 col-lg-2">
+                <div class="footer_main_title py-3"> Category</div>
+                <ul class="footer_menu">
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Business</a></li>
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Entertainment</a></li>
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Environment</a></li>
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Health</a></li>
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Life style</a></li>
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Politics</a></li>
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Technology</a></li>
+                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; World</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-5 col-lg-3 position_footer_relative">
+                <div class="footer_main_title py-3"> Most Viewed Posts</div>
+                <div class="footer_makes_sub_font"> Dec 31, 2016</div>
+                <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
+                <div class="footer_makes_sub_font"> Dec 31, 2016</div>
+                <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
+                <div class="footer_makes_sub_font"> Dec 31, 2016</div>
+                <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
+                <div class="footer_position_absolute"><img src="{% static 'images/footer_sub_tipik.png' %}" alt="img"
+                                                           class="width_footer_sub_img"/></div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 ">
+                <div class="footer_main_title py-3"> Last Modified Posts</div>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/allef-vinicius-108153.jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/32-450x260.jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/download (1).jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/science-578x362.jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/vil-son-35490.jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/zack-minor-15104.jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/download.jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/download (2).jpg' %}" alt="img"/></a>
+                <a href="#" class="footer_img_post_6"><img src="{% static 'images/ryan-moreno-98837.jpg' %}" alt="img"/></a>
+            </div>
+        </div>
+        <div class="row justify-content-center pt-2 pb-4">
+            <div class="col-12 col-md-8 col-lg-7 ">
+                <div class="input-group">
+                    <span class="input-group-addon fh5co_footer_text_box" id="basic-addon1"><i
+                            class="fa fa-envelope"></i></span>
+                    <input type="text" class="form-control fh5co_footer_text_box" placeholder="Enter your email..."
+                           aria-describedby="basic-addon1">
+                    <a href="#" class="input-group-addon fh5co_footer_subcribe" id="basic-addon12"> <i
+                            class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid fh5co_footer_right_reserved">
+    <div class="container">
+        <div class="row  ">
+            <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2018, All rights reserved. Design by <a
+                    href="https://freehtml5.co" title="Free HTML5 Bootstrap templates">FreeHTML5.co</a>.
+            </div>
+            <div class="col-12 col-md-6 spdp_right py-4">
+                <a href="#" class="footer_last_part_menu">Home</a>
+                <a href="Contact_us.html" class="footer_last_part_menu">About</a>
+                <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
+                <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
         </div>
     </div>
 </div>
 
-{% endblock content %}
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<!-- Waypoints -->
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<!-- Main -->
+<script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+</html>
