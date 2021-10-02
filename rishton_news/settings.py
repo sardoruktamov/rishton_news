@@ -76,6 +76,7 @@ TEMPLATES = [
                 'blog_post.custom_context_processor.subject_renderer',
                 'blog_post.custom_context_processor.blog_processor',
                 'elon.custom_context_processor.elon_renderer',
+                'elon.custom_context_processor.ann_category_renderer',
             ],
         },
     },

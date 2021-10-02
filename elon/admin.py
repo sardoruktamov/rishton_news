@@ -24,7 +24,8 @@ class AnnouncementImageAdmin(admin.TabularInline):
 
 @admin.register(Announcement)
 class Announcementdmin(TranslatableAdmin):
-    list_display = ('title', 'description', 'category',)
+    list_display = ('title', 'description', 'category', 'is_public')
+    list_editable = ('is_public',)
     list_display_links = ('title',)
     search_fields = ['title', 'description', 'category']
     inlines = [AnnouncementImageAdmin]
