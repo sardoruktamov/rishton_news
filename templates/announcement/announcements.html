@@ -144,8 +144,8 @@
             {% for obj in all_ann_category %}
             <div class="item px-2">
                 <div class="fh5co_latest_trading_img_position_relative">
-                    <div class="fh5co_latest_trading_img" style="height: 160px">
-                    <img src="{{ obj.image.url }}" alt="" style="height: 160px"  /></div>
+                    <div class="fh5co_latest_trading_img" >
+                    <img src="{{ obj.image.url }}" alt="" /></div>
                     <div class="fh5co_latest_trading_img_position_absolute"></div>
                     <div class="fh5co_latest_trading_img_position_absolute_1">
                         <h4><a href="{{ obj.get_absolute_url }}" class="text-white mb-5"> {{ obj.name }} </a></h4>
@@ -179,7 +179,7 @@
                 <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
                     {% for obj in announcement %}
                     <div class="col">
-                        <div class="card h-100 shadow-sm"> <img src="{{ obj.image.url }}" class="card-img-top" alt="...">
+                        <div class="card h-100 shadow-sm"> <img src="{{ obj.image.url }}" style="height: 80%" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary">{{ obj.cost}}</span>
                                 <span class="float-end price-hp"><i class="fa fa-clock-o"></i> {{ obj.created_at|date:"d M Y" }}</span> </div>

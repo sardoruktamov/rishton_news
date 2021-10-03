@@ -31,7 +31,7 @@ class AnnouncementForm(TranslatableModelForm):
                 attrs={'class': 'form-control mb-3', 'aria-label': 'Floating form-select-lg example'}),
             'full_name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
-            'cost': forms.TextInput(attrs={'class': 'form-control'}),
+            'cost': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'so\'mda, $ yoki ayriboshlash kabi ma\'lumotlar ham kiriting'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
 
         }

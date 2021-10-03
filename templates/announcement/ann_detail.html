@@ -21,7 +21,7 @@
     {% if object.image2 %}<li data-target="#carouselExampleIndicators" data-slide-to="2" style=" height: 30px; border-radius: 50%"></li>{% endif %}
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
+    <div class="carousel-item active" style="object-fit: contain;">
       <img class="d-block w-100" src="{{ object.image.url }}"  alt="First slide">
     </div>{% if object.image1 %}
     <div class="carousel-item">
