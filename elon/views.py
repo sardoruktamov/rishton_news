@@ -32,10 +32,14 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
         slug_field = self.request.POST['title']
         if slug_field.isascii():  # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
             self.object.slug = slug_field.replace(" ",
-                                                  "-")  # elon yaratilganda slug maydodidagi bo`sh joylarni "-" bilan almashtirib qoyadi
+                                                  "-").replace(".",
+                                                  "-")  # elon yaratilganda slug maydodidagi
+                                                        # bo`sh joylarni "-" bilan almashtirib qoyadi
         else:
             self.object.slug = to_latin(slug_field).replace(" ",
-                                                            "-")  # agar kiritilgan malumot isascii jadvalida bol,asa lotin yozuviga aylantiriladi
+                                                            "-").replace(".",
+                                                            "-")   # agar kiritilgan malumot isascii jadvalida
+                                                                    # bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
 
     def get_success_url(self, **kwargs):
@@ -51,7 +55,7 @@ class AnnouncementDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         obj = self.get_object()
         context = super().get_context_data()
-        context['category'] = self.model.objects.filter(category=obj.category)[0:4]
+        context['category'] = self.model.objects.filter(is_public=True, category=obj.category)[0:4]
         return context
 
 
