@@ -46,6 +46,13 @@ class AnnouncementDetailView(DetailView):
     model = Announcement
     context_object_name = 'object'
     template_name = 'announcement/ann_detail.html'
+    success_message = "E'loningiz muvoffaqiyatli yaratildi! Bizning xizmatimizdan foydalanganingiz uchun raxmat!"
+
+    def get_context_data(self, *args, **kwargs):
+        obj = self.get_object()
+        context = super().get_context_data()
+        context['category'] = self.model.objects.filter(category=obj.category)[0:4]
+        return context
 
 
 def load_category(request):

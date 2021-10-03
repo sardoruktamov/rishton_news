@@ -2,7 +2,7 @@ from .models import Announcement, Category
 
 def elon_renderer(request):
     data = {
-        'all_announcement':  Announcement.objects.all()[:1]
+        'all_announcement':  Announcement.objects.all()
     }
     return data
 
