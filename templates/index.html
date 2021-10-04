@@ -12,9 +12,10 @@
             <div class="fh5co_suceefh5co_height"><img src="{{ i.image.url }}" alt="img"/>
                 <div class="fh5co_suceefh5co_height_position_absolute"></div>
                 <div class="fh5co_suceefh5co_height_position_absolute_font">
+                    <div class=""><a href="{{ i.get_absolute_url }}" class="fh5co_good_font"> {{ i.title }} </a></div>
                     <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ i.created_at }}
                     </a></div>
-                    <div class=""><a href="{{ i.get_absolute_url }}" class="fh5co_good_font"> {{ i.title }} </a></div>
+
                 </div>
             </div>
         </div>
@@ -22,12 +23,13 @@
         <div class="col-md-6">
             <div class="row">
                 {% for obj in all_blog %}
-                <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
+                <div class="col-md-6 col-6 paddding animate-box " data-animate-effect="fadeIn">
                     <div class="fh5co_suceefh5co_height_2"><img src="{{ obj.image.url }}" alt="img"/>
                         <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
-                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ obj.created_at }} </a></div>
-                            <div class=""><a href="{% url 'detailview' obj.slug %}" class="fh5co_good_font_2"> {{ obj.title }} </a></div>
+                        <div class="fh5co_suceefh5co_height_position_absolute_font_2 ">
+                            <div class=""><a href="{% url 'detailview' obj.slug %}" class="fh5co_good_font_2"> {{ obj.title|truncatechars:60 }} </a></div>
+                            <div class="pb-3"><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ obj.created_at }} </a></div>
+
                         </div>
                     </div>
                 </div>
@@ -37,23 +39,6 @@
     </div>
 </div>
 
-<div class="container-fluid pt-3" style="background-color: #adadad; height: 350px">
-<div class="row">
-    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
-        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
-        </div>
-    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
-        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
-        </div>
-    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
-        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
-        </div>
-    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
-        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
-        </div>
-
-</div>
-</div>
 <div class="container-fluid pt-3">
     <div class="container animate-box" data-animate-effect="fadeIn">
         <div>
@@ -161,6 +146,9 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="container-fluid fh5co_video_news_bg pb-4">
     <div class="container animate-box" data-animate-effect="fadeIn">
         <div>
@@ -273,6 +261,25 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="container-fluid pt-3" style="background-color: #adadad; height: 350px">
+<div class="row">
+    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
+        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
+        </div>
+    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
+        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
+        </div>
+    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
+        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
+        </div>
+    <div class="col-3" style="display: flex; justify-content: center; align-items: center">
+        <img src="{% static 'images/kfs.png' %}" alt="" width="50%" style="padding-top: 50px"><br>
+        </div>
+
+</div>
 </div>
 <div class="container-fluid pb-4 pt-4 paddding">
     <div class="container paddding">
