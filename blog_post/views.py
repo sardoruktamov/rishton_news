@@ -89,5 +89,5 @@ def sendmail(request):
             message=message
         )
         contact_user.save()
-        messages.info(request, "Xabaringiz muvoffaqiyatli yuborildi! Tez orada elektron pochtangizga javob olasiz.")
+        messages.info(request, "Xabaringiz muvoffaqiyatli yuborildi! Tez orada elektron pochtangizga javobini olasiz.")
         return redirect('contact')
