@@ -33,8 +33,8 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
         if slug_field.isascii():  # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
             self.object.slug = slug_field.replace(" ",
                                                   "-").replace(".",
-                                                  "-")  # elon yaratilganda slug maydodidagi
-                                                        # bo`sh joylarni "-" bilan almashtirib qoyadi
+                                                  "-")  # elon yaratilganda slug maydonidagi
+                                                        # bo`sh joylarni va nuqtani "-" bilan almashtirib qoyadi
         else:
             self.object.slug = to_latin(slug_field).replace(" ",
                                                             "-").replace(".",
