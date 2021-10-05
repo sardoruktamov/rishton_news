@@ -69,10 +69,10 @@ class Search(ListView):
     model = Blog
     paginate_by = 5
     template_name = 'blog.html'
+    context_object_name = 'object_list'
 
     def get_queryset(self):
-        print('+++++++++++++++++')
-
+        print(self.request.GET.get('search'),'+++++++++++++++++')
         query = self.request.GET.get('search')
         if query:
             object_list = self.model.objects.filter(title__icontains=query)

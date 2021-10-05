@@ -10,6 +10,6 @@ urlpatterns = [
     path('blog/<str:slug>/', DetailViews.as_view(), name='detailview'),
     path('categories/<str:slug>/', CategoriesView.as_view(), name='categories'),
     path('contact/', contact, name='contact'),
-    path('search/', Search, name='search'),
+    path('search/', Search.as_view(), name='search'),
     path('sendmail/', sendmail, name="sendmail"),
 ]
