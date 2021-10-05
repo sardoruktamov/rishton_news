@@ -13,7 +13,7 @@
                 <div class="fh5co_suceefh5co_height_position_absolute"></div>
                 <div class="fh5co_suceefh5co_height_position_absolute_font">
                     <div class=""><a href="{{ i.get_absolute_url }}" class="fh5co_good_font"> {{ i.title }} </a></div>
-                    <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ i.created_at }}
+                    <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ i.created_at|date:'d M Y H:i:s' }}
                     </a></div>
 
                 </div>
@@ -28,7 +28,7 @@
                         <div class="fh5co_suceefh5co_height_position_absolute"></div>
                         <div class="fh5co_suceefh5co_height_position_absolute_font_2 ">
                             <div class=""><a href="{% url 'detailview' obj.slug %}" class="fh5co_good_font_2"> {{ obj.title|truncatechars:60 }} </a></div>
-                            <div class="pb-3"><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ obj.created_at }} </a></div>
+                            <div class="pb-3"><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ obj.created_at|date:'d M Y H:i:s' }} </a></div>
 
                         </div>
                     </div>
@@ -40,9 +40,32 @@
 </div>
 
 <div class="container-fluid pb-4 pt-5">
+    <div class="container">
+    <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">So'ngi yangiliklar</div>
+        </div>
+        <div class="row" style="display: flex; flex-wrap: wrap">
+            {% for blog in all_blog_content %}
+            <div class="col-4 px-2" >
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img style="object-fit: fill"  src="{{ blog.image.url }}" alt=""/></div>
+                    <div>
+                        <a href="single.html" class="d-block fh5co_small_post_heading">
+                            <span class="">{{ blog.title }}</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i> {{ blog.created_at|date:'d M Y H:i:s' }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</div>
+
+<div class="container-fluid pb-4 pt-5">
     <div class="container animate-box">
         <div>
-            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">News</div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">News 1</div>
         </div>
         <div class="owl-carousel owl-theme" id="slider2">
             {% for blog in all_blog %}
@@ -52,7 +75,7 @@
                     <div>
                         <a href="single.html" class="d-block fh5co_small_post_heading">
                             <span class="">{{ blog.title }}</span></a>
-                        <div class="c_g"><i class="fa fa-clock-o"></i> {{ blog.created_at }}</div>
+                        <div class="c_g"><i class="fa fa-clock-o"></i> {{ blog.created_at|date:'d M Y H:i:s' }}</div>
                     </div>
                 </div>
             </div>
@@ -93,7 +116,7 @@
         <div class="row mx-0">
             <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
                 <div>
-                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">News</div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">News 2</div>
                 </div>
                 <div class="row pb-4">
                     <div class="col-md-5">

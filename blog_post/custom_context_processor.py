@@ -13,4 +13,8 @@ def blog_processor(request):
     }
     return data
 
-
+def blog_content(request):
+    data = {
+        'all_blog_content':  Blog.objects.all()
+    }
+    return data

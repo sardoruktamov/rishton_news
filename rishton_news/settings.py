@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'blog_post.custom_context_processor.subject_renderer',
                 'blog_post.custom_context_processor.blog_processor',
+                'blog_post.custom_context_processor.blog_content',
                 'elon.custom_context_processor.elon_renderer',
                 'elon.custom_context_processor.ann_category_renderer',
             ],

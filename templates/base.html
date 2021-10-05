@@ -92,12 +92,12 @@
                     aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
             <a class="navbar-brand" href="{% url 'homepage' %}"><img src="{% static 'images/logo.png' %}" alt="img"
                                                                      class="mobile_logo_width"/></a>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>
@@ -108,7 +108,6 @@
                             {% endfor %}
                         </div>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">E'lonlar<span class="sr-only">(current)</span></a>
@@ -125,21 +124,24 @@
                             <a class="dropdown-item" href="{% url 'announcement_create' %}">E'lon berish</a>
                             <a class="dropdown-item" href="#">Shaxsiy sahifa</a>
                             <a class="dropdown-item" href="#">mening e'lonlarim</a>
+                            <a class="dropdown-item" href="{% url 'contact' %}">Biz bilan bog'lanish</a>
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'contact' %}">Contact <span
+                        <a class="nav-link" href="">Kirish <span
                                 class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item align-self-center">
-                        <div class="d-inline-block text-center dd_position_relative ">
-                            <select class="form-control fh5co_text_select_option">
-                                <option>O'zbek</option>
-                                <option>Русский</option>
-                            </select>
-                        </div>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="">Ro'yxatdan o'tish <span
+                                class="sr-only">(current)</span></a>
                     </li>
                 </ul>
+                <div class="d-inline-block  ">
+                    <select class="form-control fh5co_text_select_option">
+                        <option>O'zbek</option>
+                        <option>Русский</option>
+                    </select>
+                </div>
             </div>
         </nav>
     </div>
