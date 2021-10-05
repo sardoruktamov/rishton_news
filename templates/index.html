@@ -39,15 +39,15 @@
     </div>
 </div>
 
-<div class="container-fluid pb-4 pt-5">
+<div class="container-fluid pb-4 ">
     <div class="container">
-    <div>
+        <div>
             <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">So'ngi yangiliklar</div>
         </div>
         <div class="row" style="display: flex; flex-wrap: wrap">
             {% for blog in all_blog_content %}
-            <div class="col-4 px-2" >
-                <div class="fh5co_hover_news_img">
+            <div class="col-4 px-2 " >
+                <div class="fh5co_hover_news_img pt-2">
                     <div class="fh5co_news_img"><img style="object-fit: fill"  src="{{ blog.image.url }}" alt=""/></div>
                     <div>
                         <a href="single.html" class="d-block fh5co_small_post_heading">
@@ -59,7 +59,7 @@
             {% endfor %}
         </div>
     </div>
-    
+
 </div>
 
 <div class="container-fluid pb-4 pt-5">
