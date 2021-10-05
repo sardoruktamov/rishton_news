@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.generic import ListView, DetailView
 from .models import Category, Blog, PicturesFromTheBlog, Tags, ContactMessage
-
+from django.db.models import Q
 
 def contact(request):
     return render(request, "Contact_us.html", {})
@@ -64,6 +64,22 @@ def tagsfilter(request, name):
         "tags": all_tags
     }
     return render(request, "blog.html", context)
+
+class Search(ListView):
+    model = Blog
+    paginate_by = 5
+    template_name = 'blog.html'
+
+    def get_queryset(self):
+        print('+++++++++++++++++')
+
+        query = self.request.GET.get('search')
+        if query:
+            object_list = self.model.objects.filter(title__icontains=query)
+        else:
+            object_list = self.model.objects.none()
+        return object_list
+
 
 
 # contact qismidan xabar yuborish
