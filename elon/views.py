@@ -102,3 +102,17 @@ class CategoryFilter(ListView):
     def get_queryset(self, **kwargs):
         queryset = self.model.objects.filter(category__slug=self.kwargs.get('slug'))
         return queryset
+
+class SearchAnn(ListView):
+    model = Announcement
+    paginate_by = 5
+    template_name = 'announcement/filter.html'
+    context_object_name = 'object_list'
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        if query:
+            object_list = self.model.objects.filter(title__icontains=query)
+        else:
+            object_list = self.model.objects.none()
+        return object_list
