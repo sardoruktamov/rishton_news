@@ -8,6 +8,6 @@ def elon_renderer(request):
 
 def ann_category_renderer(request):
     data = {
-        'all_ann_category':  Category.objects.all()
+        'all_ann_category':  Category.objects.all().order_by('slug')
     }
     return data
