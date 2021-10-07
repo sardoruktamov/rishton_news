@@ -27,7 +27,7 @@ class Announcementdmin(TranslatableAdmin):
     list_display = ('title', 'description', 'category', 'is_public')
     list_editable = ('is_public',)
     list_display_links = ('title',)
-    search_fields = ['title', 'description', 'category']
+    search_fields = ['translations__title', 'translations__description']
     inlines = [AnnouncementImageAdmin]
     list_filter = ('category', 'created_at')
     save_on_top = True  # saqlash va o`chirish tugmalarini sahifa yuqorisiga ham qo`shimcha sifatida olib chiqish uchun

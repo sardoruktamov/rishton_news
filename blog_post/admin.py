@@ -23,7 +23,7 @@ class BlogImageAdmin(admin.StackedInline):
 class BlogAdmin(TranslatableAdmin):
     list_display = ('title', 'category',)
     list_display_links = ('title',)
-    search_fields = ['title', 'description', 'category']
+    search_fields = ['translations__title', 'translations__description']
     inlines = [BlogImageAdmin]
     list_filter = ('category', 'created_at')
 
