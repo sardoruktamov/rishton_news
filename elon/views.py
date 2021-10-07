@@ -112,7 +112,7 @@ class SearchAnn(ListView):
     def get_queryset(self):
         query = self.request.GET.get('search')
         if query:
-            object_list = self.model.objects.filter(title__icontains=query)
+            object_list = self.model.objects.filter(Q(translations__title__icontains=query) | Q(translations__description__icontains=query))
         else:
             object_list = self.model.objects.none()
         return object_list
