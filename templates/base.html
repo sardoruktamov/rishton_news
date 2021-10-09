@@ -111,30 +111,34 @@
             <a class="navbar-brand" href="{% url 'homepage' %}"><img src="{% static 'images/logo.png' %}" alt="img"
                                                                      class="mobile_logo_width"/></a>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; align-items: center">
+                <ul class="navbar-nav mr-auto" >
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'announcement_list' %}">Bosh sahifa <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                            <a class="dropdown-item" href="{% url 'blogpage' %}">Barchasi </a>
-                            {% for cat in all_category %}
-                                <a class="dropdown-item" href="{% url 'categories' cat.slug %}">{{ cat.name }} </a>
-                            {% endfor %}
-                        </div>
+{#                    <li class="nav-item dropdown">#}
+{#                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"#}
+{#                           aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>#}
+{#                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">#}
+{#                            <a class="dropdown-item" href="{% url 'blogpage' %}">Barchasi </a>#}
+{#                            {% for cat in all_category %}#}
+{#                                <a class="dropdown-item" href="{% url 'categories' cat.slug %}">{{ cat.name }} </a>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                    </li>#}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'announcement_create' %}">E'lon berish<span
+                                class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">E'lonlar<span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                            <a class="dropdown-item" href="{% url 'announcement_list' %}">Barcha e'lonlar</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
+{#                    <li class="nav-item dropdown">#}
+{#                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"#}
+{#                           aria-haspopup="true" aria-expanded="false">E'lonlar<span class="sr-only">(current)</span></a>#}
+{#                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">#}
+{#                            <a class="dropdown-item" href="{% url 'announcement_list' %}">Barcha e'lonlar</a>#}
+{#                            <a class="dropdown-item" href="#">Another action</a>#}
+{#                            <a class="dropdown-item" href="#">Something else here</a>#}
+{#                        </div>#}
+{#                    </li>#}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Shaxsiy<span class="sr-only">(current)</span></a>
@@ -154,7 +158,7 @@
                                 class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                <div class="d-inline-block  ">
+                <div class="d-inline-block pt-2 ">
                     <select class="form-control fh5co_text_select_option">
                         <option>O'zbek</option>
                         <option>Русский</option>

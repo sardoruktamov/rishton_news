@@ -47,7 +47,7 @@
 
         <main>
 
-            <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+            <div class="container-fluid bg-trasparent my-4" style="position: relative;">
             <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" style="display: flex; flex-wrap: wrap; flex-flow: wrap">
             {% for obj in announcement %}
 
@@ -58,9 +58,9 @@
 
                         <div class="card-body">
                             <span class="float-start badge rounded-pill bg-primary">{{ obj.cost}}</span>
-                          <h5 class="card-title" id="card_title">{{ obj.title }}</h5>
+                          <h5 class="card-title" id="card_title"><a href="{% url 'ann_detail' obj.slug %}" id="card_title">{{ obj.title }}</a></h5>
                           <p class="card-text"><i class="fa fa-clock-o"></i> {{ obj.created_at|date:"d M Y" }}</p>
-                          <p class="card-text"><small class="text-muted"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ obj.address }}</small></p>
+                          <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ obj.address }}</p>
                         </div>
                       </div>
 
@@ -69,40 +69,6 @@
             </div>
 
                 <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" style="display: flex; justify-content: center">
-{#                    {% for obj in announcement %}#}
-{#                    <div class="card">#}
-{#                        <div class="card-header">#}
-{#                          <img src="{{ obj.image.url }}" alt="rover" />#}
-{#                        </div>#}
-{#                        <div class="card-body">#}
-{#                          <span class="tag tag-teal">{{ obj.cost }}</span>#}
-{#                          <h5><a href="{% url 'ann_detail' obj.slug %}" id="card_title">{{ obj.title }}</a></h5>#}
-{#                            <hr>#}
-{##}
-{#                          <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ obj.address }}</p>#}
-{#                        <div class="user">#}
-{#                            <div class="user-info">#}
-{#                              <h5><i class="fa fa-clock-o"></i> {{ obj.created_at|date:"d M Y" }}</h5>#}
-{#                              <small><i class="fa fa-map-marker" aria-hidden="true"></i> {{ obj.address }}</small>#}
-{#                            </div>#}
-{#                          </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    {% endfor %}#}
-{#                    {% for obj in announcement %}#}
-{#                    <div class="col">#}
-{#                        <div class="card h-100 shadow-sm"> <img src="{{ obj.image.url }}" style="height: 300px" class="card-img-top" alt="...">#}
-{#                            <div class="card-body">#}
-{#                                <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary">{{ obj.cost}}</span>#}
-{#                                <span class="float-end price-hp"><i class="fa fa-clock-o"></i> {{ obj.created_at|date:"d M Y" }}</span> </div>#}
-{#                                <h5 class="card-title">{{ obj.title }}</h5>#}
-{#                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ obj.address }}</p>#}
-{#                                <div class="text-center my-4"> <a href="{% url 'ann_detail' obj.slug %}" class="btn btn-warning">Batafsil...</a> </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    {% endfor %}#}
-
 
                 </div>
             </div>
