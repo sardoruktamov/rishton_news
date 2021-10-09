@@ -12,8 +12,8 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('', include('blog_post.urls')),
-    path('elonlar/', include('elon.urls'))
+    path('blogs/', include('blog_post.urls')),
+    path('', include('elon.urls'))
 )
 
 if settings.DEBUG:
