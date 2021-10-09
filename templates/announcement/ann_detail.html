@@ -15,6 +15,7 @@
          </div>
      {% endfor %}
  {% endif %}
+
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style=" height: 30px; border-radius: 50%"></li>
     {% if object.image1 %}<li data-target="#carouselExampleIndicators" data-slide-to="1" style=" height: 30px; border-radius: 50%"></li>{% endif %}
@@ -49,6 +50,10 @@
             <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
                 <div class="col-md-8"></div>
                 <div class="col-md-4"></div>
+                {% if object.is_public == False %}
+                <p style="border: sandybrown; border-radius: 5px; padding: 5px; box-shadow: 0px 0px 5px orange; background: bisque"><b> E'lon holati: </b> E'loningiz ko'rib chiqilish holatida</p>
+
+                {% endif %}
             <p><b> Kategoriya: </b> {{ object.category }} / {{ object.subcategory }}</p>
                 <p><b> Mahsulot nomi: </b> {{ object.title }}</p>
                 <p><b> Mahsulot xaqida to'liq ma'lumot: </b><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ object.description }}</p>
