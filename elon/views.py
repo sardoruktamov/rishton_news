@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, RedirectView
 from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy, reverse
-from .forms import AnnouncementForm
+from .forms import AnnouncementForm, SignUpForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from elon.transliterate import to_latin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
+from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout
+
 
 
 
@@ -112,7 +114,6 @@ class SearchAnn(ListView):
     def get_queryset(self):
         query = self.request.GET.get('search')
         query_cat = self.request.GET.get('category')
-        qs_model = self.model.objects.filter(is_public=True)
         if query != '' and query is not None:
             object_list = self.model.objects.filter(
                 (Q(translations__title__icontains=query) |
@@ -120,8 +121,21 @@ class SearchAnn(ListView):
                 Q(is_public=True)
                 )
         elif query_cat != '' and query_cat is not None:
-            object_list = self.model.objects.filter(Q(category_id=query_cat)&
-                Q(is_public=True))
+            object_list = self.model.objects.filter(Q(category_id=query_cat) & Q(is_public=True))
         else:
             object_list = self.model.objects.none()
         return object_list
+
+# foydalanuvchilarni ro`yxatdan o`tkazish
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    success_url = reverse_lazy('announcement_list')
+    template_name = 'accounts/sign_up.html'
+
+
+class LogoutView(RedirectView):
+    url = '/auth/login/'
+
+    def get(self, request, *args, **kwargs):
+        auth_logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)

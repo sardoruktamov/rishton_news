@@ -1,7 +1,8 @@
 from django import forms
 from elon.models import Announcement, Subcategory
 from parler.forms import TranslatableModelForm
-
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class AnnouncementForm(TranslatableModelForm):
     class Meta:
@@ -49,3 +50,11 @@ class AnnouncementForm(TranslatableModelForm):
                 pass
         elif self.instance.pk:
             self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('translation')
+
+class SignUpForm(UserCreationForm):
+    first_name = forms.CharField(max_length=150, help_text='Optional')
+    email = forms.EmailField(max_length=150, help_text='Emailni kiriting')
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'email', 'password1', 'password2')

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+    <titl>E'lonlar joylashtirish</titl>
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid pb-4 pt-5">
+        <div class="container animate-box">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ro'xatdan o'tish</button>
+    </form>
+</div>
+</div>
+
+{% endblock %}
