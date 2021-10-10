@@ -112,10 +112,16 @@ class SearchAnn(ListView):
     def get_queryset(self):
         query = self.request.GET.get('search')
         query_cat = self.request.GET.get('category')
+        qs_model = self.model.objects.filter(is_public=True)
         if query != '' and query is not None:
-            object_list = self.model.objects.filter(Q(translations__title__icontains=query) | Q(translations__description__icontains=query))
+            object_list = self.model.objects.filter(
+                (Q(translations__title__icontains=query) |
+                Q(translations__description__icontains=query)) &
+                Q(is_public=True)
+                )
         elif query_cat != '' and query_cat is not None:
-            object_list = self.model.objects.filter(Q(category_id=query_cat))
+            object_list = self.model.objects.filter(Q(category_id=query_cat)&
+                Q(is_public=True))
         else:
             object_list = self.model.objects.none()
         return object_list
