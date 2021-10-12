@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, RedirectView
 from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy, reverse
-from .forms import AnnouncementForm, SignUpForm
+from .forms import AnnouncementForm, SignUpForm, CustomAuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from elon.transliterate import to_latin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import LoginView
 from django.db.models import Q
-from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout
+from django.contrib.auth import REDIRECT_FIELD_NAME, login, logout as auth_logout
 
 
 
@@ -57,7 +58,7 @@ class AnnouncementDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         obj = self.get_object()
         context = super().get_context_data()
-        context['category'] = self.model.objects.filter(is_public=True, category=obj.category)[0:4]
+        context['category'] = self.model.objects.filter(is_public=True, category=obj.category)[0:5]
         return context
 
 
@@ -102,7 +103,7 @@ class CategoryFilter(ListView):
     paginate_by = 5
 
     def get_queryset(self, **kwargs):
-        queryset = self.model.objects.filter(category__slug=self.kwargs.get('slug'))
+        queryset = self.model.objects.filter(category__slug=self.kwargs.get('slug'), is_public=True)
         return queryset
 
 class SearchAnn(ListView):
@@ -132,10 +133,25 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('announcement_list')
     template_name = 'accounts/sign_up.html'
 
+class Login(LoginView):
+    authentication_form = CustomAuthenticationForm
+    form_class = CustomAuthenticationForm
+    template_name = 'accounts/login.html'
+    success_url = reverse_lazy('announcement_list')
+
+    def form_valid(self, form):
+        remember_me = form.cleaned_data['remember_me']
+        login(self.request, form.get_user())
+        if remember_me:
+            self.request.session.set_expiry(1209600)
+        return super(LoginView, self).form_valid(form)
+
 
 class LogoutView(RedirectView):
-    url = '/auth/login/'
+    permanent = False
+    query_string = True
 
-    def get(self, request, *args, **kwargs):
-        auth_logout(request)
-        return super(LogoutView, self).get(request, *args, **kwargs)
+    def get_redirect_url(self):
+        auth_logout(self.request)
+        return reverse('announcement_list')
+
