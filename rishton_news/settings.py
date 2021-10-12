@@ -96,6 +96,9 @@ DATABASES = {
     }
 }
 
+# http://127.0.0.1:8000/accounts/profile/ bu odatdagi login qilganda djangoni qaytaruvchi yo`li,
+# va biz uni LOGIN_REDIRECT_URL dan foydalanib quyidagicha o'zgartirishimiz mumkin:
+LOGIN_REDIRECT_URL = 'announcement_list'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
