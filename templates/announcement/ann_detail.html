@@ -65,9 +65,10 @@
                 {% endfor %}
             <div class="row">
                 <h2><button type="button" class="btn btn-outline-warning ml-3" data-toggle="modal" data-target="#exampleModalCenter">Bog'lanish</button></h2>
+                {% if elon.author == request.user or request.user.is_superuser %}
                 <h2><a href="{% url 'ann_update' object.slug %}" class="btn btn-outline-success ml-3">Tahrirlash</a></h2>
                 <h2><button type="submit" class="btn btn-outline-danger ml-3" data-toggle="modal" data-target="#exampleModal">O`chirish</button></h2>
-
+                {% endif %}
 
 
 
