@@ -31,6 +31,7 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
     success_message = "E'loningiz muvoffaqiyatli yaratildi! Bizning xizmatimizdan foydalanganingiz uchun raxmat!"
 
     def form_valid(self, form):
+        form.instance.created_by = self.request.user
         self.object = form.save(commit=False)
         slug_field = self.request.POST['title']
         if slug_field.isascii():  # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
@@ -48,6 +49,7 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
     def get_success_url(self, **kwargs):
         return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
+    
 
 class AnnouncementDetailView(DetailView):
     model = Announcement
