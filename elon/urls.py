@@ -3,7 +3,7 @@ from .views import (
     AnnouncementList, AnnouncementCreateView,
     load_category, AnnouncementDetailView,
     edit_announcement, delete_announcement,
-    CategoryFilter, SearchAnn, SignUpView, LogoutView, Login
+    CategoryFilter, SearchAnn, SignUpView, LogoutView, Login, userprofile
 )
 
 urlpatterns = [
@@ -16,6 +16,7 @@ urlpatterns = [
     path('search/', SearchAnn.as_view(), name="search-ann"),
     path('register/', SignUpView.as_view(), name="register"),
     path('login/', Login.as_view(), name='login'),
+    path('profile/', userprofile, name='profile'),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('ajax/load-subcategory/', load_category, name="ajax_load_subcategory"),
 ]

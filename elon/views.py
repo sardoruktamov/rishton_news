@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, RedirectView
 from .models import Category, Subcategory, Announcement
 from django.urls import reverse_lazy, reverse
-from .forms import AnnouncementForm, SignUpForm, CustomAuthenticationForm
+from .forms import AnnouncementForm, SignUpForm, CustomAuthenticationForm, UserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from elon.transliterate import to_latin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -49,7 +49,7 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
     def get_success_url(self, **kwargs):
         return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
-    
+
 
 class AnnouncementDetailView(DetailView):
     model = Announcement
@@ -157,3 +157,13 @@ class LogoutView(RedirectView):
         auth_logout(self.request)
         return reverse('announcement_list')
 
+def userprofile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            print()
+            form.save()
+    else:
+        u_form = UserProfileForm(instance=request.user)
+    return render(request, 'accounts/profile.html', {'form': form})
