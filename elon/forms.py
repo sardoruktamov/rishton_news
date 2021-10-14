@@ -64,3 +64,14 @@ class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username','required': True,'autofocus' : True}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Password','required': True}))
     remember_me = forms.BooleanField(required=False)
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+        labels = {'first_name':'Ism', 'last_name':'Familya', 'email':'Elektron pochta'}
+        widgets = {
+            'first_name':forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name':forms.TextInput(attrs={'class': 'form-control'}),
+            'email':forms.TextInput(attrs={'class': 'form-control'}),
+        }
