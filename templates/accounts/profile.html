@@ -11,23 +11,10 @@
             <form class="form-signin" method="post" action="{% url 'login' %}">
                 {% csrf_token %}
 {#                <img class="mb-4" src="{% static 'main/images/placeholder_logo.png' %}" width="114" height="100" alt="">#}
-                <h1 class="h3 mb-3 font-weight-normal">Kirish</h1>
+                <h1 class="h3 mb-3 font-weight-normal">Shaxsiy ma'lumotlar</h1>
                 <label for="id_username" class="sr-only">Username</label>
-                {{ form.username }}
-                <label for="id_password" class="sr-only">Password</label>
-                {{ form.password }}
-                <div class="checkbox mb-3">
-                    <label for="id_remember_me">
-                        {{ form.remember_me }} Eslab qolish
-                    </label>
-                </div>
-                {% if form.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        Your username and password didn't match.
-                        Please try again.
-                    </p>
-                {% endif %}
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                {{ form.as_p }}
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Saqlash</button>
             </form>
         </div>
     </div>

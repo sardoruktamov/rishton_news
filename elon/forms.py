@@ -5,12 +5,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 
+
 class AnnouncementForm(TranslatableModelForm):
     class Meta:
         model = Announcement
         fields = (
-                'title', 'description', 'image', 'image1', 'image2', 'cost', 'category', 'subcategory',
-                'full_name', 'address', 'phone',)
+            'title', 'description', 'image', 'image1', 'image2', 'cost', 'category', 'subcategory',
+            'full_name', 'address', 'phone',)
         labels = {'title': 'Sarlavha',
                   'description': 'Tavsif',
                   'image': 'Rasm-1', 'image1': 'Rasm-2(agar mavjud bo\'lsa)', 'image2': 'Rasm-3(agar mavjud bo\'lsa)',
@@ -33,7 +34,8 @@ class AnnouncementForm(TranslatableModelForm):
                 attrs={'class': 'form-control mb-3', 'aria-label': 'Floating form-select-lg example'}),
             'full_name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
-            'cost': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'so\'mda, $ yoki ayriboshlash kabi ma\'lumotlar ham kiriting'}),
+            'cost': forms.TextInput(attrs={'class': 'form-control',
+                                           'placeholder': 'so\'mda, $ yoki ayriboshlash kabi ma\'lumotlar ham kiriting'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
@@ -52,6 +54,7 @@ class AnnouncementForm(TranslatableModelForm):
         elif self.instance.pk:
             self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('translation')
 
+
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=150, help_text='Optional')
     email = forms.EmailField(max_length=150, help_text='Emailni kiriting')
@@ -60,18 +63,23 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'email', 'password1', 'password2')
 
+
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Username','required': True,'autofocus' : True}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Password','required': True}))
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Username', 'required': True, 'autofocus': True}))
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'required': True}))
     remember_me = forms.BooleanField(required=False)
+
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
-        labels = {'first_name':'Ism', 'last_name':'Familya', 'email':'Elektron pochta'}
+        fields = ['username', 'first_name', 'last_name', 'email']
+        labels = {'username': 'Login', 'first_name': 'Ism', 'last_name': 'Familya', 'email': 'Elektron pochta'}
         widgets = {
-            'first_name':forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name':forms.TextInput(attrs={'class': 'form-control'}),
-            'email':forms.TextInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.TextInput(attrs={'class': 'form-control'}),
         }
