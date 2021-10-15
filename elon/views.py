@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from elon.transliterate import to_latin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
 from django.contrib.auth import REDIRECT_FIELD_NAME, login, logout as auth_logout
 
@@ -28,6 +29,7 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
     model = Announcement
     form_class = AnnouncementForm
     template_name = "announcement/add_and_update.html"
+    login_url = 'login'
     success_message = "E'loningiz muvoffaqiyatli yaratildi! Bizning xizmatimizdan foydalanganingiz uchun raxmat!"
 
     def form_valid(self, form):
@@ -165,5 +167,5 @@ def userprofile(request):
             print()
             form.save()
     else:
-        u_form = UserProfileForm(instance=request.user)
+        form = UserProfileForm(instance=request.user)
     return render(request, 'accounts/profile.html', {'form': form})
