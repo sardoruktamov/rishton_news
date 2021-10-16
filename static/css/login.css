@@ -1,38 +1,102 @@
-
-.btn-login {
-  font-size: 0.9rem;
-  letter-spacing: 0.05rem;
-  /*padding: 0.75rem 1rem;*/
+.main-content{
+	width: 50%;
+	border-radius: 20px;
+	box-shadow: 0 5px 5px rgba(0,0,0,.4);
+	margin: 5em auto;
+	display: flex;
 }
-
-.btn-google {
-  color: white !important;
-  background-color: #ea4335;
+.company__info{
+	background-color: #f5bc04;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: #fff;
 }
-
-.btn-facebook {
-  color: white !important;
-  background-color: #3b5998;
+.fa-android{
+	font-size:3em;
 }
-.card-login {
+@media screen and (max-width: 640px) {
+	.main-content{width: 90%;}
+	.company__info{
+		display: none;
+	}
+	.login_form{
+		border-top-left-radius:20px;
+		border-bottom-left-radius:20px;
+	}
+}
+@media screen and (min-width: 642px) and (max-width:800px){
+	.main-content{width: 70%;}
+}
+.row > h2{
+	color:#f5bc04;
+}
+.login_form{
+	background-color: #fff;
+	border-top-right-radius:20px;
+	border-bottom-right-radius:20px;
+	border-top:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+form{
+	padding: 0 2em;
+}
+.form__input{
+	width: 100%;
+	border:0px solid transparent;
+	border-radius: 0;
+	border-bottom: 1px solid #aaa;
+	padding: 1em .5em .5em;
+	padding-left: 2em;
+	outline:none;
+	margin:1.5em auto;
+	transition: all .5s ease;
+}
+.form__input:focus{
+	border-bottom-color: #008080;
+	box-shadow: 0 0 5px rgba(0,80,80,.4);
+	border-radius: 4px;
+}
+.btn-login{
+	transition: all .5s ease;
+	width: 70%;
+	height: 40px;
+	border-radius: 30px;
+	color:#f5bc04;
+	font-weight: 600;
+	background-color: #fff;
+	border: 1px solid #f5bc04;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+}
+.btn-login:hover, .btn:focus{
+	background-color: #f5bc04;
+	color:#fff;
+}
+/*---------------search qismi--------------*/
+
+.form-control-s {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  width: 350px;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
 }
 
-.card-body-login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px;
-  min-height: 100px;
-  width: 600px;
-}
-
-.card-body-login p {
-  font-size: 13px;
-  margin: 0 0 40px;
-}
+/*#chegara{*/
+/* border: 1px solid red;*/
+/*}*/
