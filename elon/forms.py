@@ -56,12 +56,21 @@ class AnnouncementForm(TranslatableModelForm):
 
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=150, help_text='Optional')
-    email = forms.EmailField(max_length=150, help_text='Emailni kiriting')
+    first_name = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Ismingizni kiriting', 'required': True, 'autofocus': True}))
+    email = forms.EmailField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Elektron pochtangizni kiriting...', 'required': True, 'autofocus': True}))
+    password1 = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Parolni kiriting..', 'required': True, 'autofocus': True}))
+    password2 = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Parolni takrorlang...', 'required': True, 'autofocus': True}))
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'email', 'password1', 'password2')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Login'}),
+        }
 
 
 class CustomAuthenticationForm(AuthenticationForm):
