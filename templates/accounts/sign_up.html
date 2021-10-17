@@ -10,8 +10,28 @@
         <div class="container animate-box">
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Ro'xatdan o'tish</button>
+        <button class="login-with-fb">Google orqali kirish  &nbsp;&nbsp;&nbsp;<i class="fa fa-google" aria-hidden="true"></i> </button>
+            <span class="options-divider">OR</span>
+            <span class="option-br"></span>
+            <div class="form-group">
+              {{ form.username }}
+            </div>
+            <div class="form-group">
+              {{ form.first_name }}
+            </div>
+            <div class="form-group">
+              {{ form.email }}
+            </div>
+            <div class="form-group">
+              {{ form.password1 }}
+            </div>
+        <div class="form-group">
+              {{ form.password2 }}
+            </div>
+            <div class="form-group">
+              <button type="submit" class="signup-btn">Ro'xatdan o'tish</button>
+            </div>
+
     </form>
 </div>
 </div>
