@@ -100,3 +100,115 @@ form{
 /*#chegara{*/
 /* border: 1px solid red;*/
 /*}*/
+.signup-page {
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    padding: 20px 0px 20px;
+}
+.form-bg {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 20px 40px 30px;
+}
+.logo {
+    width: 200px;
+    margin: 20px auto 40px;
+    display: block;
+}
+.signup-page h2 {
+    font-size: 17px;
+    color: #999;
+    text-align: center;
+    margin: 15px 5px;
+}
+button.login-with-fb {
+    background-color: #f5bc04;
+    border: none;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.signup-btn {
+    background-color: #f5bc04;
+    border: none;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin: 10px 0px 10px;
+}
+.signup-btn:hover, .login-with-fb:hover{
+  opacity: 0.9;
+}
+.term-policy {
+    color: #999;
+    text-align: center;
+    font-size: 14px;
+    width: 61%;
+    float: none;
+    margin: 0 auto;
+    line-height: 25px;
+}
+.term-policy a {
+    color: #d93026;
+    text-decoration: none;
+    font-size: 14px;
+}
+button.login-with-fb i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+span.options-divider {
+    text-align: center;
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    width: 40px;
+    margin: 0 auto;
+    padding: 25px 0px;
+    background-color: #fff;
+    z-index: 3;
+    color: #999;
+}
+span.option-br {
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    width: 100%;
+    bottom: 34px;
+    z-index: 2;
+    display: block;
+}
+.login-link {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0px 15px 0px;
+}
+.login-link p {
+    color: #262626;
+    font-size: 14px;
+    margin: 15px;
+    text-align: center;
+}
+.login-link p a{
+    color: #d93026;
+}
+.get-app {
+    font-size: 16px;
+    padding: 10px 10px 15px;
+    text-align: center;
+    width: 100%;
+}
+.get-app a {
+    display: inline-block;
+    margin: 15px 5px;
+}
