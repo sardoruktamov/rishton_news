@@ -59,7 +59,8 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Ismingizni kiriting', 'required': True, 'autofocus': True}))
     email = forms.EmailField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Elektron pochtangizni kiriting...', 'required': True, 'autofocus': True}))
+        attrs={'class': 'form-control', 'placeholder': 'Elektron pochtangizni kiriting...', 'required': True,
+               'autofocus': True}))
     password1 = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Parolni kiriting..', 'required': True, 'autofocus': True}))
     password2 = forms.CharField(widget=forms.PasswordInput(
@@ -68,6 +69,8 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'email', 'password1', 'password2')
+        labels = {'username': 'Login', 'first_name': 'Ism', 'email': 'Elektron pochta', 'password1': 'Parol',
+                  'password2': 'takroriy parol'}
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Login'}),
         }
@@ -75,9 +78,11 @@ class SignUpForm(UserCreationForm):
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form__input', 'id':'username','name':'username', 'placeholder': 'Username', 'required': True, 'autofocus': True}))
+        attrs={'class': 'form__input', 'id': 'username', 'name': 'username', 'placeholder': 'Username',
+               'required': True, 'autofocus': True}))
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form__input', 'id':'password', 'placeholder': 'Password', 'required': True}))
+        widget=forms.PasswordInput(
+            attrs={'class': 'form__input', 'id': 'password', 'placeholder': 'Password', 'required': True}))
     remember_me = forms.BooleanField(required=False)
 
 
