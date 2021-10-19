@@ -9,7 +9,9 @@
 <div class="container-fluid">
 		<div class="row main-content bg-success text-center">
 			<div class="col-md-4 text-center company__info">
-				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<span class="company__logo"><h2>
+                    <img src="{% static 'images/carusel/login.png' %}" width="98%" alt="">
+                </h2></span>
 				<h4 class="company_title">Your Company Logo</h4>
 			</div>
 			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
@@ -39,7 +41,7 @@
 						</form>
 					</div>
 					<div class="row">
-						<p>Don't have an account? <a href="#">Register Here</a></p>
+						<p>Ro'yxatdan o'tmaganmisiz? <a href="{% url 'register' %}">Ro'yxatdan o'tish</a></p>
 					</div>
 				</div>
 			</div>
