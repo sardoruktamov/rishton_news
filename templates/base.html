@@ -27,33 +27,19 @@
 <body>
 <div class="container-fluid fh5co_header_bg">
     <div class="container">
-        <div class="row d-flex pt-2 pb-2">
+        <div class="row d-flex pt-2 pb-2" style="display: flex; justify-content: space-between">
             <div class="fh5co_mediya_center"><a href="#" class="color_fff fh5co_mediya_setting"><i
-                    class="fa fa-clock-o"></i>&nbsp;&nbsp;&nbsp;Friday, 5 January 2018</a>
-
-                <a href="#" class="color_fff fh5co_mediya_setting">Instagram</a>
+                    class="fa fa-clock-o"></i>&nbsp;&nbsp;&nbsp;{{ now|date:'d.m.Y H:i' }}</a>
             </div>
-
-                <div class="text-center d-inline-block">
-                    <a class="fh5co_display_table">
-                        <div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div>
-                    </a>
-                </div>
-                <div class="text-center d-inline-block">
-                    <a class="fh5co_display_table">
-                        <div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div>
-                    </a>
-                </div>
-                <div class="text-center d-inline-block">
-                    <a href="https://twitter.com/fh5co" target="_blank" class="fh5co_display_table">
-                        <div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div>
-                    </a>
-                </div>
-                <div class="text-center d-inline-block">
-                    <a href="https://fb.com/fh5co" target="_blank" class="fh5co_display_table">
-                        <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
-                    </a>
-                </div>
+            <div class="fh5co_mediya_center">
+                {% if user.is_authenticated %}
+                <a href="{% url 'login' %}" class="color_fff fh5co_mediya_setting"  id="login-reg">Accountdan chiqish</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="color_fff fh5co_mediya_setting" id="login-reg">Kirish</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="{% url 'register' %}" class="color_fff fh5co_mediya_setting" id="login-reg">Ro'yxatdan o'tish</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
@@ -62,17 +48,13 @@
                     <div class="col-1"></div>
                     <div class="col-10">
                         <div class="row col-12 align-self-center fh5co_mediya_right mt-4 mb-4" id="chegara">
-
                             <div class="col-sm-6 col-md-4 col-lg-3 col-12 text-center d-inline-block p-0 m-0">
-
                                 <select class="form-control " name="category" id="">
-                                <option value="">sohalar bo`yicha</option>
+                                    <option value="">sohalar bo`yicha</option>
                                     {% for cat in all_ann_category %}
-
                                     <option value="{{ cat.id }}">{{ cat.name }}</option>
                                     {% endfor %}
                                 </select>
-
                             </div>
                             <div class="col-8 text-center d-inline-block p-0 m-0">
                                 <input class="form-control" name="search" type="text" placeholder="kalit so'z kiriting..." style="width: 100%" >
@@ -140,16 +122,6 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'announcement_list' %}">Bosh sahifa <span class="sr-only">(current)</span></a>
                     </li>
-{#                    <li class="nav-item dropdown">#}
-{#                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"#}
-{#                           aria-haspopup="true" aria-expanded="false">Yangiliklar <span class="sr-only">(current)</span></a>#}
-{#                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">#}
-{#                            <a class="dropdown-item" href="{% url 'blogpage' %}">Barchasi </a>#}
-{#                            {% for cat in all_category %}#}
-{#                                <a class="dropdown-item" href="{% url 'categories' cat.slug %}">{{ cat.name }} </a>#}
-{#                            {% endfor %}#}
-{#                        </div>#}
-{#                    </li>#}
                     <li class="nav-item ">
                         <a class="nav-link" href="{% url 'announcement_create' %}">E'lon berish<span
                                 class="sr-only">(current)</span></a>
@@ -173,22 +145,6 @@
                             <a class="dropdown-item" href="{% url 'contact' %}">Biz bilan bog'lanish</a>
                         </div>
                     </li>
-
-                    {% if user.is_authenticated %}
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'logout' %}">CHiqish <span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'login' %}">вход <span
-                            class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'register' %}">регистрация <span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    {% endif %}
                 </ul>
                 <div class="d-inline-block mt-2 ">
                     <select class="form-control fh5co_text_select_option">
