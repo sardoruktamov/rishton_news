@@ -33,11 +33,11 @@
             </div>
             <div class="fh5co_mediya_center">
                 {% if user.is_authenticated %}
-                <a href="{% url 'login' %}" class="color_fff fh5co_mediya_setting"  id="login-reg">Accountdan chiqish</a>
+                <a href="{% url 'logout' %}" class="color_fff fh5co_mediya_setting"  id="login-reg" target="_blank">Accountdan chiqish</a>
                 {% else %}
-                <a href="{% url 'login' %}" class="color_fff fh5co_mediya_setting" id="login-reg">Kirish</a>
+                <a href="{% url 'login' %}" class="color_fff fh5co_mediya_setting" id="login-reg" target="_blank">Kirish</a>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="{% url 'register' %}" class="color_fff fh5co_mediya_setting" id="login-reg">Ro'yxatdan o'tish</a>
+                <a href="{% url 'register' %}" class="color_fff fh5co_mediya_setting" id="login-reg" target="_blank">Ro'yxatdan o'tish</a>
                 {% endif %}
             </div>
         </div>
@@ -123,7 +123,7 @@
                         <a class="nav-link" href="{% url 'announcement_list' %}">Bosh sahifa <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'announcement_create' %}">E'lon berish<span
+                        <a class="nav-link" href="{% url 'announcement_create' %}" >E'lon berish<span
                                 class="sr-only">(current)</span></a>
                     </li>
 {#                    <li class="nav-item dropdown">#}
