@@ -10,7 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
 from django.contrib.auth import REDIRECT_FIELD_NAME, login, logout as auth_logout
-
+from datetime import datetime
 
 
 
@@ -23,6 +23,11 @@ class AnnouncementList(ListView):
     def get_queryset(self):
         queryset = Announcement.objects.filter(is_public=True)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = datetime.now()
+        return context
 
 
 class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -48,6 +53,11 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
                                                                     # bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = datetime.now()
+        return context
+
     def get_success_url(self, **kwargs):
         return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
@@ -63,6 +73,7 @@ class AnnouncementDetailView(DetailView):
         obj = self.get_object()
         context = super().get_context_data()
         context['category'] = self.model.objects.filter(is_public=True, category=obj.category)[0:5]
+        context['now'] = datetime.now()
         return context
 
 
@@ -78,6 +89,12 @@ class AnnouncementUpdateView(SuccessMessageMixin, UpdateView):
     template_name = "announcement/add_and_update.html"
     success_message = "E'loningiz muvoffaqiyatli o'zgartirildi!"
     success_url = reverse_lazy('announcement_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = datetime.now()
+        print(context,'-------------------------')
+        return context
 
     # def get_success_url(self, **kwargs):
     #     return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
