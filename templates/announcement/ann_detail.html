@@ -90,7 +90,7 @@
                         <img src="{{ obj.image.url }}" alt="img" class="fh5co_most_trading"/>
                     </div>
                     <div class="col-7 paddding">
-                        <div class="most_fh5co_treding_font"> {{ obj.title }}</div>
+                        <div class="most_fh5co_treding_font"><a href="{% url 'ann_detail' obj.slug %}" style="color: black"> {{ obj.title }}</a></div>
                         <div class="most_fh5co_treding_font_123"> {{ obj.created_at|date:'d/m/Y' }}</div>
                     </div>
                 </div>
