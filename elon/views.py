@@ -13,7 +13,6 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, login, logout as auth_logou
 from datetime import datetime
 
 
-
 class AnnouncementList(ListView):
     model = Announcement
     context_object_name = "announcement"
@@ -44,13 +43,13 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
         if slug_field.isascii():  # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
             self.object.slug = slug_field.replace(" ",
                                                   "-").replace(".",
-                                                  "-")  # elon yaratilganda slug maydonidagi
-                                                        # bo`sh joylarni va nuqtani "-" bilan almashtirib qoyadi
+                                                               "-")  # elon yaratilganda slug maydonidagi
+            # bo`sh joylarni va nuqtani "-" bilan almashtirib qoyadi
         else:
             self.object.slug = to_latin(slug_field).replace(" ",
                                                             "-").replace(".",
-                                                            "-")   # agar kiritilgan malumot isascii jadvalida
-                                                                    # bol,asa lotin yozuviga aylantiriladi
+                                                                         "-")  # agar kiritilgan malumot isascii jadvalida
+            # bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -60,7 +59,6 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
 
     def get_success_url(self, **kwargs):
         return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
-
 
 
 class AnnouncementDetailView(DetailView):
@@ -93,7 +91,6 @@ class AnnouncementUpdateView(SuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = datetime.now()
-        print(context,'-------------------------')
         return context
 
     # def get_success_url(self, **kwargs):
@@ -103,13 +100,15 @@ class AnnouncementUpdateView(SuccessMessageMixin, UpdateView):
 def edit_announcement(request, slug):
     announ = get_object_or_404(Announcement, slug=slug)
     form = AnnouncementForm(instance=announ)
+    now = datetime.now()
     if request.method == 'POST':
         form = AnnouncementForm(request.POST, request.FILES, instance=announ)
         if form.is_valid():
             form.save()
             return render(request, 'announcement/add_and_update.html',
-                   {'form': form, 'message': "E'loningiz muvoffaqiyatli o'zgartirildi!"})
-    return render(request, 'announcement/add_and_update.html', {'form': form})
+                          {'form': form, 'message': "E'loningiz muvoffaqiyatli o'zgartirildi!"})
+    return render(request, 'announcement/add_and_update.html', {'form': form, 'now': now})
+
 
 def delete_announcement(request, slug):
     elon = get_object_or_404(Announcement, slug=slug)
@@ -127,6 +126,12 @@ class CategoryFilter(ListView):
         queryset = self.model.objects.filter(category__slug=self.kwargs.get('slug'), is_public=True)
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = datetime.now()
+        return context
+
+
 class SearchAnn(ListView):
     model = Announcement
     paginate_by = 5
@@ -139,20 +144,32 @@ class SearchAnn(ListView):
         if query != '' and query is not None:
             object_list = self.model.objects.filter(
                 (Q(translations__title__icontains=query) |
-                Q(translations__description__icontains=query)) &
+                 Q(translations__description__icontains=query)) &
                 Q(is_public=True)
-                )
+            )
         elif query_cat != '' and query_cat is not None:
             object_list = self.model.objects.filter(Q(category_id=query_cat) & Q(is_public=True))
         else:
             object_list = self.model.objects.none()
         return object_list
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = datetime.now()
+        return context
+
+
 # foydalanuvchilarni ro`yxatdan o`tkazish
 class SignUpView(CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy('announcement_list')
     template_name = 'accounts/sign_up.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = datetime.now()
+        return context
+
 
 class Login(LoginView):
     authentication_form = CustomAuthenticationForm
@@ -167,6 +184,11 @@ class Login(LoginView):
             self.request.session.set_expiry(1209600)
         return super(LoginView, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = datetime.now()
+        return context
+
 
 class LogoutView(RedirectView):
     permanent = False
@@ -175,6 +197,7 @@ class LogoutView(RedirectView):
     def get_redirect_url(self):
         auth_logout(self.request)
         return reverse('announcement_list')
+
 
 def userprofile(request):
     if request.method == 'POST':
