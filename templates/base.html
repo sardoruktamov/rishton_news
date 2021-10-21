@@ -33,11 +33,11 @@
             </div>
             <div class="fh5co_mediya_center">
                 {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="color_fff fh5co_mediya_setting"  id="login-reg" target="_blank">Accountdan chiqish</a>
+                <a href="{% url 'logout' %}" class="color_fff fh5co_mediya_setting"  id="login-reg" ">Accountdan chiqish</a>
                 {% else %}
-                <a href="{% url 'login' %}" class="color_fff fh5co_mediya_setting" id="login-reg" target="_blank">Kirish</a>
+                <a href="{% url 'login' %}" class="color_fff fh5co_mediya_setting" id="login-reg" >Kirish</a>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="{% url 'register' %}" class="color_fff fh5co_mediya_setting" id="login-reg" target="_blank">Ro'yxatdan o'tish</a>
+                <a href="{% url 'register' %}" class="color_fff fh5co_mediya_setting" id="login-reg" >Ro'yxatdan o'tish</a>
                 {% endif %}
             </div>
         </div>
@@ -114,8 +114,8 @@
             <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-            <a class="navbar-brand" href="{% url 'homepage' %}"><img src="{% static 'images/logo.png' %}" alt="img"
-                                                                     class="mobile_logo_width"/></a>
+            <a class="navbar-brand" href="{% url 'homepage' %}">
+                <img src="{% static 'images/carusel/login.png' %}" alt="img" class="mobile_logo_width"/></a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                 <ul class="navbar-nav mr-auto" >
@@ -163,7 +163,7 @@
     <div class="container animate-box">
         <div class="row">
             <div class="col-12 spdp_right py-5">
-                <img src="{% static 'images/white_logo.png' %}" alt="img" class="footer_logo"/></div>
+                <img src="{% static 'images/carusel/tod2.png' %}" alt="img" class="footer_logo"/></div>
             <div class="clearfix"></div>
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="footer_main_title py-3"> About</div>
