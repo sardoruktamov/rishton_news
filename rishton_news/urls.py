@@ -7,7 +7,8 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog_post.urls')),
+    path('blogs/', include('blog_post.urls')),
+    path('', include('elon.urls')),
     path('118n', include('django.conf.urls.i18n'))
 ]
 
