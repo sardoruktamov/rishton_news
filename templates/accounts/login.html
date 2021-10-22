@@ -10,19 +10,16 @@
 		<div class="row main-content bg-success text-center">
 			<div class="col-md-4 text-center company__info">
 				<span class="company__logo"><h2>
-                    <img src="{% static 'images/carusel/login.png' %}" width="98%" alt="">
+                    <img src="{% static 'images/carusel/tod-logo.png' %}" width="40%" alt="">
                 </h2></span>
-				<h4 class="company_title">Your Company Logo</h4>
 			</div>
 			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
 				<div class="container">
+
 					<div class="row">
-						<h2>Kirish</h2>
-					</div>
-					<div class="row">
-						<form control="" class="form-group" method="post" action="{% url 'login' %}">
+						<form control=""  method="post" action="{% url 'login' %}" >
                             {% csrf_token %}
-							<div class="row">
+							<div class="row" >
                                 {{ form.username }}
 {#								<input type="text" name="username" id="username" class="form__input" placeholder="Username">#}
 							</div>
@@ -41,7 +38,7 @@
 						</form>
 					</div>
 					<div class="row">
-						<p>Ro'yxatdan o'tmaganmisiz? <a href="{% url 'register' %}">Ro'yxatdan o'tish</a></p>
+						<p style="align-content: center; text-align: center">Ro'yxatdan o'tmaganmisiz? <a href="{% url 'register' %}">Ro'yxatdan o'tish</a></p>
 					</div>
 				</div>
 			</div>

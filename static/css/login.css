@@ -1,12 +1,16 @@
+#login-reg{
+    color: #f5bc04;
+}
+
 .main-content{
-	width: 50%;
+	width: 33%;
 	border-radius: 20px;
 	box-shadow: 0 5px 5px rgba(0,0,0,.4);
 	margin: 5em auto;
 	display: flex;
 }
 .company__info{
-	background-color: #f5bc04;
+	background-color: #999999;
 	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
 	display: flex;
