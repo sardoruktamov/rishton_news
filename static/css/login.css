@@ -68,15 +68,15 @@ form{
 	width: 70%;
 	height: 40px;
 	border-radius: 30px;
-	color:#f5bc04;
+	color:#636c72;
 	font-weight: 600;
 	background-color: #fff;
-	border: 1px solid #f5bc04;
+	border: 1px solid #636c72;
 	margin-top: 1.5em;
 	margin-bottom: 1em;
 }
 .btn-login:hover, .btn:focus{
-	background-color: #f5bc04;
+	background-color: #636c72;
 	color:#fff;
 }
 /*---------------search qismi--------------*/
