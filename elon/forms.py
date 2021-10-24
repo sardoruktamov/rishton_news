@@ -78,11 +78,11 @@ class SignUpForm(UserCreationForm):
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form__input', 'id': 'username', 'name': 'username', 'placeholder': 'Username',
+        attrs={'class': 'form__input', 'id': 'username', 'name': 'username', 'placeholder': 'Login',
                'required': True, 'autofocus': True}))
     password = forms.CharField(
         widget=forms.PasswordInput(
-            attrs={'class': 'form__input', 'id': 'password', 'placeholder': 'Password', 'required': True}))
+            attrs={'class': 'form__input', 'id': 'password', 'placeholder': 'Parol', 'required': True}))
     remember_me = forms.BooleanField(required=False)
 
 
