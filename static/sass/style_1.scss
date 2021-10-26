@@ -45,6 +45,9 @@ a, a:hover {
 .color_fff {
 	color: #fff!important;
 }
+.color_fff:hover {
+	color: #f5bc04;
+}
 .treding_btn {
 	background: $yellow;
 	color: #fff;
@@ -111,16 +114,16 @@ a, a:hover {
 	position: relative;
 	top: -10px;
 }
-.navbar-light .navbar-nav .open > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.open, .navbar-light .navbar-nav .nav-link.active {
-	color: #fff!important;
-	padding-top: 12px!important;
-	padding-bottom: 15px!important;
-	padding-left: 20px!important;
-	padding-right: 20px!important;
-	margin: 0 20px!important;
-	@include transition(0.5s);
-	background: $yellow!important;
-	@include clip-path(polygon(100% 0, 100% 85%, 14% 85%, 0 100%, 0% 60%, 0 0));
+//.navbar-light .navbar-nav .open > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.open, .navbar-light .navbar-nav .nav-link.active {
+//	color: #fff!important;
+//	padding-top: 12px!important;
+//	padding-bottom: 15px!important;
+//	padding-left: 20px!important;
+//	padding-right: 20px!important;
+//	margin: 0 20px!important;
+//	@include transition(0.5s);
+//	background: $yellow!important;
+//	@include clip-path(polygon(100% 0, 100% 85%, 14% 85%, 0 100%, 0% 60%, 0 0));
 }
 .navbar-light .navbar-nav .nav-link {
 	color: #222!important;
