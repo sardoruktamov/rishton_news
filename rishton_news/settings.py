@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,16 +35,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #my apps
+    'django.contrib.sites',
+    # my apps
     'blog_post',
     'elon',
 
-    #other apps
+    # other apps
     'parler',
     'widget_tweaks',
     'crispy_forms',
     'dynamic_formsets',
-
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +87,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rishton_news.wsgi.application'
 
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -118,7 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
 LANGUAGE_CODE = "uz"
 LANGUAGE_COOKIE_NAME = "lang"
 LANGUAGES = (
@@ -128,7 +145,6 @@ LANGUAGES = (
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 
 
 TIME_ZONE = 'Asia/Tashkent'
@@ -142,7 +158,6 @@ USE_TZ = True
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
 
 PARLER_LANGUAGES = {
     None: (
@@ -168,7 +183,6 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 PARLER_DEFAULT_LANGUAGE_CODE = LANGUAGE_CODE
@@ -178,10 +192,10 @@ PARLER_DEFAULT_LANGUAGE_CODE = LANGUAGE_CODE
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND   = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = "sardorbek.uktamov.3@gmail.com"
-EMAIL_HOST      = 'smtp.gmail.com'
-EMAIL_PORT      = 587
-EMAIL_USE_TLS   = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = 'S727367#.sns'
 # DEFAULT_FROM_EMAIL = "sardorbek.uktamov.3@gmail.com"
