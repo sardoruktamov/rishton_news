@@ -13,6 +13,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, login, logout as auth_logou
 from datetime import datetime
 
 
+#elonlar royxati
 class AnnouncementList(ListView):
     model = Announcement
     context_object_name = "announcement"
@@ -28,7 +29,7 @@ class AnnouncementList(ListView):
         context['now'] = datetime.now()
         return context
 
-
+#elpn yaratish
 class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Announcement
     form_class = AnnouncementForm
@@ -60,7 +61,7 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
     def get_success_url(self, **kwargs):
         return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
-
+#elonni uchirish
 class AnnouncementDetailView(DetailView):
     model = Announcement
     context_object_name = 'object'
