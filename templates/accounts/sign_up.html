@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static socialaccount %}
+
 {% load widget_tweaks %}
 {% block title %}
     <titl>E'lonlar joylashtirish</titl>
@@ -10,7 +11,7 @@
         <div class="container animate-box">
     <form action="" method="post">
         {% csrf_token %}
-        <button class="login-with-fb">Google orqali kirish  &nbsp;&nbsp;&nbsp;<i class="fa fa-google" aria-hidden="true"></i> </button>
+        <a href="{% provider_login_url 'google' %}" class="btn signup-btn">Google orqali kirish  &nbsp;&nbsp;&nbsp;<i class="fa fa-google" aria-hidden="true"></i> </a>
             <span class="options-divider">OR</span>
             <span class="option-br"></span>
             <div class="form-group">
