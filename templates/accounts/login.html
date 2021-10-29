@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load socialaccount %}
 {% load widget_tweaks %}
 {% block title %}
     <titl>E'lonlar joylashtirish</titl>
@@ -17,8 +18,9 @@
 				<div class="container">
 
 					<div class="row">
-						<form control=""  method="post" action="{% url 'login' %}" >
+						<form control="" class="form-group pl-5" method="post" action="{% url 'login' %}" >
                             {% csrf_token %}
+                            <a href="{% provider_login_url 'google' %}">google orqali kirish</a>
 							<div class="row" >
                                 {{ form.username }}
 {#								<input type="text" name="username" id="username" class="form__input" placeholder="Username">#}
