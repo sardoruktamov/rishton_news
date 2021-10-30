@@ -135,16 +135,18 @@
 {#                            <a class="dropdown-item" href="#">Something else here</a>#}
 {#                        </div>#}
 {#                    </li>#}
+                    {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Shaxsiy<span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
                             <a class="dropdown-item" href="{% url 'announcement_create' %}">E'lon berish</a>
-                            <a class="dropdown-item" href="#">Shaxsiy sahifa</a>
+                            <a class="dropdown-item" href="{% url 'profile' %}">Shaxsiy sahifa</a>
                             <a class="dropdown-item" href="#">mening e'lonlarim</a>
                             <a class="dropdown-item" href="{% url 'contact' %}">Biz bilan bog'lanish</a>
                         </div>
                     </li>
+                    {% endif %}
                 </ul>
                 <div class="d-inline-block mt-2 ">
                     <select class="form-control fh5co_text_select_option">
