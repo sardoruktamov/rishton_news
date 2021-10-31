@@ -18,7 +18,7 @@ class AnnouncementList(ListView):
     model = Announcement
     context_object_name = "announcement"
     template_name = "announcement/announcements.html"
-    paginate_by = 16
+    paginate_by = 8
 
     def get_queryset(self):
         queryset = Announcement.objects.filter(is_public=True)
@@ -44,11 +44,13 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
         if slug_field.isascii():  # agar kiritilgan malumot isascii jadvalida bolsa pastdagi izox ishlaydi
             self.object.slug = slug_field.replace(" ",
                                                   "-").replace(".",
-                                                               "-")  # elon yaratilganda slug maydonidagi
+                                                               "-").replace("'",
+                                                                         "-")  # elon yaratilganda slug maydonidagi
             # bo`sh joylarni va nuqtani "-" bilan almashtirib qoyadi
         else:
             self.object.slug = to_latin(slug_field).replace(" ",
                                                             "-").replace(".",
+                                                                         "-").replace("ь",
                                                                          "-")  # agar kiritilgan malumot isascii jadvalida
             # bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
@@ -210,3 +212,14 @@ def userprofile(request):
     else:
         form = UserProfileForm(instance=request.user)
     return render(request, 'accounts/profile.html', {'form': form})
+
+
+class UserFilterListView(LoginRequiredMixin, ListView):
+  model = Announcement
+  template_name = "announcement/filter.html"
+  context_object_name = 'object_list'
+  paginate_by = 8
+
+  def get_queryset(self):
+      queryset = Announcement.objects.filter(created_by=self.request.user)
+      return queryset
