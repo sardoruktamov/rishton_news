@@ -142,10 +142,15 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
                             <a class="dropdown-item" href="{% url 'announcement_create' %}">E'lon berish</a>
                             <a class="dropdown-item" href="{% url 'profile' %}">Shaxsiy sahifa</a>
-                            <a class="dropdown-item" href="#">mening e'lonlarim</a>
+                            <a class="dropdown-item" href="{% url 'user-filter' %}">mening e'lonlarim</a>
                             <a class="dropdown-item" href="{% url 'contact' %}">Biz bilan bog'lanish</a>
                         </div>
                     </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'announcement_create' %}" >Shaxsiy sahifa<span
+                                class="sr-only">(current)</span></a>
+                        </li>
                     {% endif %}
                 </ul>
                 <div class="d-inline-block mt-2 ">
