@@ -140,7 +140,6 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Shaxsiy<span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                            <a class="dropdown-item" href="{% url 'announcement_create' %}">E'lon berish</a>
                             <a class="dropdown-item" href="{% url 'profile' %}">Shaxsiy sahifa</a>
                             <a class="dropdown-item" href="{% url 'user-filter' %}">mening e'lonlarim</a>
                             <a class="dropdown-item" href="{% url 'contact' %}">Biz bilan bog'lanish</a>
@@ -225,18 +224,18 @@
                 <a href="#" class="footer_img_post_6"><img src="{% static 'images/ryan-moreno-98837.jpg' %}" alt="img"/></a>
             </div>
         </div>
-        <div class="row justify-content-center pt-2 pb-4">
-            <div class="col-12 col-md-8 col-lg-7 ">
-                <div class="input-group">
-                    <span class="input-group-addon fh5co_footer_text_box" id="basic-addon1"><i
-                            class="fa fa-envelope"></i></span>
-                    <input type="text" class="form-control fh5co_footer_text_box" placeholder="Enter your email..."
-                           aria-describedby="basic-addon1">
-                    <a href="#" class="input-group-addon fh5co_footer_subcribe" id="basic-addon12"> <i
-                            class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</a>
-                </div>
-            </div>
-        </div>
+{#        <div class="row justify-content-center pt-2 pb-4">#}
+{#            <div class="col-12 col-md-8 col-lg-7 ">#}
+{#                <div class="input-group">#}
+{#                    <span class="input-group-addon fh5co_footer_text_box" id="basic-addon1"><i#}
+{#                            class="fa fa-envelope"></i></span>#}
+{#                    <input type="text" class="form-control fh5co_footer_text_box" placeholder="Enter your email..."#}
+{#                           aria-describedby="basic-addon1">#}
+{#                    <a href="#" class="input-group-addon fh5co_footer_subcribe" id="basic-addon12"> <i#}
+{#                            class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 </div>
 <div class="container-fluid fh5co_footer_right_reserved">
@@ -246,10 +245,8 @@
                     href="https://freehtml5.co" title="Free HTML5 Bootstrap templates">FreeHTML5.co</a>.
             </div>
             <div class="col-12 col-md-6 spdp_right py-4">
-                <a href="#" class="footer_last_part_menu">Home</a>
-                <a href="Contact_us.html" class="footer_last_part_menu">About</a>
-                <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
-                <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
+                <a href="{% url 'announcement_list' %}" class="footer_last_part_menu">Bosh sahifa</a>
+                <a href="{% url 'announcement_create' %}" class="footer_last_part_menu">E'lon berish</a>
         </div>
     </div>
 </div>
