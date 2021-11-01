@@ -137,9 +137,9 @@ class CategoryFilter(ListView):
 
 class SearchAnn(ListView):
     model = Announcement
-    paginate_by = 5
+    paginate_by = 3
     template_name = 'announcement/filter.html'
-    context_object_name = 'object_list'
+    # context_object_name = 'object_list'
 
     def get_queryset(self):
         query = self.request.GET.get('search')
