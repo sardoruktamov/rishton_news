@@ -7,8 +7,8 @@
 
 {% block content %}
     <div class="container-fluid pb-4 pt-5">
-        <div class="container animate-box">
-            <form class="form-signin" method="post" action="{% url 'login' %}">
+        <div class="container animate-box ">
+            <form class="form-signin " method="post" action="{% url 'login' %}">
                 {% csrf_token %}
 {#                <img class="mb-4" src="{% static 'main/images/placeholder_logo.png' %}" width="114" height="100" alt="">#}
                 <h1 class="h3 mb-3 font-weight-normal">Shaxsiy ma'lumotlar</h1>
