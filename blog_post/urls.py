@@ -4,7 +4,7 @@ from .views import (HomePageView, DetailViews,
                     tagsfilter, contact, sendmail, Search)
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name="homepage"),
+    path('bloglar/', HomePageView.as_view(), name="homepage"),
     path('blogs/', BlogPageView.as_view(), name="blogpage"),
     path('tagged/<str:name>', tagsfilter, name="tagged_blogs"),
     path('blog/<str:slug>/', DetailViews.as_view(), name='detailview'),
