@@ -11,6 +11,8 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.db.models import Q
 from django.contrib.auth import REDIRECT_FIELD_NAME, login, logout as auth_logout
 from datetime import datetime
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 
 
 #elonlar royxati
@@ -18,7 +20,7 @@ class AnnouncementList(ListView):
     model = Announcement
     context_object_name = "announcement"
     template_name = "announcement/announcements.html"
-    paginate_by = 8
+    paginate_by = 1
 
     def get_queryset(self):
         queryset = Announcement.objects.filter(is_public=True)
@@ -123,7 +125,7 @@ def delete_announcement(request, slug):
 class CategoryFilter(ListView):
     model = Announcement
     template_name = 'announcement/filter.html'
-    paginate_by = 5
+    paginate_by = 2
 
     def get_queryset(self, **kwargs):
         queryset = self.model.objects.filter(category__slug=self.kwargs.get('slug'), is_public=True)
@@ -139,22 +141,63 @@ class SearchAnn(ListView):
     model = Announcement
     paginate_by = 3
     template_name = 'announcement/filter.html'
-    # context_object_name = 'object_list'
 
-    def get_queryset(self):
+    def get(self, request):
         query = self.request.GET.get('search')
         query_cat = self.request.GET.get('category')
-        if query != '' and query is not None:
+
+        if query:
+            object_list = self.model.objects.filter(
+                        (Q(translations__title__icontains=query) |
+                         Q(translations__description__icontains=query)) &
+                        Q(is_public=True)
+                    )
+        elif query and query_cat:
             object_list = self.model.objects.filter(
                 (Q(translations__title__icontains=query) |
                  Q(translations__description__icontains=query)) &
-                Q(is_public=True)
+                 Q(category_id=query_cat) &
+                 Q(is_public=True)
             )
-        elif query_cat != '' and query_cat is not None:
+        elif query_cat:
             object_list = self.model.objects.filter(Q(category_id=query_cat) & Q(is_public=True))
         else:
-            object_list = self.model.objects.none()
-        return object_list
+            object_list = Announcement.objects.all()
+
+        paginator = Paginator(object_list, self.paginate_by)
+        page = request.GET.get('page', 1)
+
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(1)
+
+        print(object_list)
+        context = {
+            'object_list': object_list
+        }
+        return render(self.request, self.template_name, context)
+
+
+
+
+
+    # def get_queryset(self):
+    #     query = self.request.GET.get('search')
+    #     query_cat = self.request.GET.get('category')
+    #     if query != '' and query is not None:
+    #         object_list = self.model.objects.filter(
+    #             (Q(translations__title__icontains=query) |
+    #              Q(translations__description__icontains=query)) &
+    #             Q(is_public=True)
+    #         )
+    #     elif query_cat != '' and query_cat is not None:
+    #         object_list = self.model.objects.filter(Q(category_id=query_cat) & Q(is_public=True))
+    #     else:
+    #         object_list = self.model.objects.none()
+    #     return object_list
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
