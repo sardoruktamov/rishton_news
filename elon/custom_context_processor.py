@@ -17,5 +17,4 @@ def ann_category_renderer(request):
 def ann_date(request):
 
     now = datetime.now()
-    print(now,'+++++++++++++++++++++')
     return now
