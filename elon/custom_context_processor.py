@@ -4,7 +4,7 @@ from datetime import datetime
 
 def elon_renderer(request):
     data = {
-        'all_announcement':  Announcement.objects.all()
+        'all_announcement':  Announcement.objects.all()[:6]
     }
     return data
 
