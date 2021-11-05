@@ -139,69 +139,67 @@ class CategoryFilter(ListView):
 
 class SearchAnn(ListView):
     model = Announcement
-    paginate_by = 3
+    paginate_by = 6
     template_name = 'announcement/filter.html'
 
-    def get(self, request):
-        query = self.request.GET.get('search')
-        query_cat = self.request.GET.get('category')
-
-        if query:
-            object_list = self.model.objects.filter(
-                        (Q(translations__title__icontains=query) |
-                         Q(translations__description__icontains=query)) &
-                        Q(is_public=True)
-                    )
-        elif query and query_cat:
-            object_list = self.model.objects.filter(
-                (Q(translations__title__icontains=query) |
-                 Q(translations__description__icontains=query)) &
-                 Q(category_id=query_cat) &
-                 Q(is_public=True)
-            )
-        elif query_cat:
-            object_list = self.model.objects.filter(Q(category_id=query_cat) & Q(is_public=True))
-        else:
-            object_list = Announcement.objects.all()
-
-        paginator = Paginator(object_list, self.paginate_by)
-        page = request.GET.get('page', 1)
-
-        try:
-            object_list = paginator.page(page)
-        except PageNotAnInteger:
-            object_list = paginator.page(1)
-        except EmptyPage:
-            object_list = paginator.page(1)
-
-        print(object_list)
-        context = {
-            'object_list': object_list
-        }
-        return render(self.request, self.template_name, context)
-
-
-
-
-
-    # def get_queryset(self):
+    # def get(self, request):
     #     query = self.request.GET.get('search')
     #     query_cat = self.request.GET.get('category')
-    #     if query != '' and query is not None:
+    #
+    #     if query:
+    #         object_list = self.model.objects.filter(
+    #                     (Q(translations__title__icontains=query) |
+    #                      Q(translations__description__icontains=query)) &
+    #                     Q(is_public=True)
+    #                 )
+    #     elif query and query_cat:
     #         object_list = self.model.objects.filter(
     #             (Q(translations__title__icontains=query) |
     #              Q(translations__description__icontains=query)) &
-    #             Q(is_public=True)
+    #              Q(category_id=query_cat) &
+    #              Q(is_public=True)
     #         )
-    #     elif query_cat != '' and query_cat is not None:
+    #     elif query_cat:
     #         object_list = self.model.objects.filter(Q(category_id=query_cat) & Q(is_public=True))
     #     else:
-    #         object_list = self.model.objects.none()
-    #     return object_list
+    #         object_list = Announcement.objects.all()
+    #
+    #     paginator = Paginator(object_list, self.paginate_by)
+    #     page = request.GET.get('page', 1)
+    #
+    #     try:
+    #         object_list = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         object_list = paginator.page(1)
+    #     except EmptyPage:
+    #         object_list = paginator.page(1)
+    #
+    #     print(object_list)
+    #     context = {
+    #         'object_list': object_list
+    #     }
+    #     return render(self.request, self.template_name, context)
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        query_cat = self.request.GET.get('category')
+        if query != '' and query is not None:
+            object_list = self.model.objects.filter(
+                (Q(translations__title__icontains=query) |
+                 Q(translations__description__icontains=query)) &
+                Q(is_public=True)
+            )
+        elif query_cat != '' and query_cat is not None:
+            object_list = self.model.objects.filter(Q(category_id=query_cat) & Q(is_public=True))
+        else:
+            object_list = self.model.objects.none()
+        return object_list
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = datetime.now()
+        context["query"] = f'search={self.request.GET.get("search")}&'
+        context["query_cat"] = f'category={self.request.GET.get("category")}&'
         return context
 
 
