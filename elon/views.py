@@ -14,8 +14,7 @@ from datetime import datetime
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-
-#elonlar royxati
+# elonlar royxati
 class AnnouncementList(ListView):
     model = Announcement
     context_object_name = "announcement"
@@ -31,7 +30,8 @@ class AnnouncementList(ListView):
         context['now'] = datetime.now()
         return context
 
-#elpn yaratish
+
+# elpn yaratish
 class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Announcement
     form_class = AnnouncementForm
@@ -47,13 +47,13 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
             self.object.slug = slug_field.replace(" ",
                                                   "-").replace(".",
                                                                "-").replace("'",
-                                                                         "-")  # elon yaratilganda slug maydonidagi
+                                                                            "-")  # elon yaratilganda slug maydonidagi
             # bo`sh joylarni va nuqtani "-" bilan almashtirib qoyadi
         else:
             self.object.slug = to_latin(slug_field).replace(" ",
                                                             "-").replace(".",
                                                                          "-").replace("ь",
-                                                                         "-")  # agar kiritilgan malumot isascii jadvalida
+                                                                                      "-")  # agar kiritilgan malumot isascii jadvalida
             # bol,asa lotin yozuviga aylantiriladi
         return super(AnnouncementCreateView, self).form_valid(form)
 
@@ -65,7 +65,8 @@ class AnnouncementCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView
     def get_success_url(self, **kwargs):
         return reverse_lazy('ann_detail', kwargs={'slug': self.object.slug})
 
-#elonni uchirish
+
+# elonni uchirish
 class AnnouncementDetailView(DetailView):
     model = Announcement
     context_object_name = 'object'
@@ -256,11 +257,11 @@ def userprofile(request):
 
 
 class UserFilterListView(LoginRequiredMixin, ListView):
-  model = Announcement
-  template_name = "announcement/filter.html"
-  context_object_name = 'object_list'
-  paginate_by = 8
+    model = Announcement
+    template_name = "announcement/filter.html"
+    context_object_name = 'object_list'
+    paginate_by = 8
 
-  def get_queryset(self):
-      queryset = Announcement.objects.filter(created_by=self.request.user)
-      return queryset
+    def get_queryset(self):
+        queryset = Announcement.objects.filter(created_by=self.request.user)
+        return queryset
